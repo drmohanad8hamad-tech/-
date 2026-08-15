@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الزَّتُونَة - الأداة الطبية الفاخرة</title>
+    <title>index.html - الأداة الطبية الفاخرة</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@600;800&display=swap" rel="stylesheet">
     <style>
         :root {
