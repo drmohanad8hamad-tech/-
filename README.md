@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الزَّتُونَة - الأداة الطبية الفاخرة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-light: #f3e5ab;
+            --gold-mid: #d4af37;
+            --gold-dark: #aa7c11;
+            --leather-dark: #2a1610;
+            --leather-light: #3e2315;
+            --glass-bg: rgba(20, 10, 5, 0.85);
+        }
+
+        body {
+            background-color: #0c0804;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at center, #26170d 0%, #0c0804 80%);
+            background-size: 40px 40px, 40px 40px, 100% 100%;
+            background-position: center center;
+            background-attachment: fixed;
+            color: var(--gold-light);
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .medical-bg-animation {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2; opacity: 0.6;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='200'%3E%3Cpath d='M 0 100 L 200 100 L 220 70 L 250 150 L 280 40 L 310 120 L 330 100 L 500 100' fill='none' stroke='rgba(212, 175, 55, 0.15)' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-position: 0 center;
+            animation: ecg-move 15s linear infinite;
+        }
+
+        @keyframes ecg-move { 0% { background-position: 0 center; } 100% { background-position: 500px center; } }
+
+        .pulsing-lights {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 120vw; height: 120vh;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+            z-index: -1; opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+        }
+
+        .pulsing-lights.active { animation: backgroundPulse 0.5s infinite alternate; }
+
+        @keyframes backgroundPulse {
+            0% { opacity: 0.1; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .antique-machine {
+            background: linear-gradient(135deg, var(--leather-light), var(--leather-dark));
+            border: 8px solid;
+            border-image: linear-gradient(to bottom right, var(--gold-light), var(--gold-dark), var(--gold-light)) 1;
+            border-radius: 30px; padding: 30px 40px; width: 90%; max-width: 800px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.15);
+            position: relative; z-index: 1; transition: box-shadow 0.3s ease;
+        }
+
+        .antique-machine.spinning {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95), inset 0 0 40px rgba(0, 0, 0, 0.8), 0 0 80px rgba(212, 175, 55, 0.4);
+        }
+
+        .plaque {
+            background: linear-gradient(to bottom, #e5c058, #a67c00);
+            border: 3px solid #6b4c00; border-radius: 15px;
+            margin: -50px auto 25px auto; width: 60%; padding: 12px; text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7), inset 0 2px 5px rgba(255,255,255,0.5);
+            position: relative;
+        }
+
+        .plaque h1 {
+            font-family: 'Amiri', serif; font-size: 40px; margin: 0; color: #2a1610;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.4); letter-spacing: 2px;
+        }
+
+        .plaque p { margin: 3px 0 0 0; font-size: 13px; color: #4a2e00; font-weight: bold; }
+
+        .plaque .owner {
+            margin: 6px auto 0 auto;
+            font-family: 'Amiri', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #3a1f00;
+            letter-spacing: 1.5px;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+            border-top: 1px solid rgba(74, 46, 0, 0.3);
+            padding-top: 5px;
+            display: inline-block;
+        }
+
+        .glass-dome {
+            background: linear-gradient(to bottom, #111, #222);
+            border: 5px solid var(--gold-mid); border-radius: 20px; padding: 10px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.8), inset 0 0 30px rgba(255, 215, 0, 0.1);
+            position: relative; margin-bottom: 25px; transition: all 0.3s ease;
+        }
+
+        .glass-dome.spinning-dome { box-shadow: 0 15px 25px rgba(0,0,0,0.8), inset 0 0 60px rgba(212, 175, 55, 0.4); }
+
+        .cylinder-window {
+            background: var(--glass-bg); border: 2px solid #555; border-radius: 10px;
+            height: 110px; display: flex; justify-content: center; align-items: center;
+            overflow: hidden; box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9); position: relative;
+        }
+
+        #disease-display {
+            font-size: 24px; text-align: center; color: var(--gold-light);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.8); transition: all 0.1s;
+            padding: 0 20px; line-height: 1.4;
+        }
+
+        .winner-effect {
+            animation: popOut 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #ffef96 !important; text-shadow: 0 0 20px #ffef96, 0 0 40px var(--gold-mid) !important;
+        }
+
+        .dials-container {
+            display: flex; justify-content: space-around; margin-bottom: 25px;
+            border-top: 2px solid rgba(212, 175, 55, 0.3); padding-top: 15px;
+        }
+
+        .dial { width: 70px; text-align: center; }
+
+        .dial-circle {
+            width: 50px; height: 50px; margin: 0 auto 8px auto; border-radius: 50%;
+            background: radial-gradient(circle, #333, #000); border: 3px solid var(--gold-mid);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; color: var(--gold-mid); transition: all 0.2s ease;
+        }
+
+        .dial-circle.active {
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.8), 0 5px 15px rgba(212, 175, 55, 0.5);
+            color: #fff; text-shadow: 0 0 10px var(--gold-mid);
+        }
+
+        .dial-circle.winner-dial {
+            box-shadow: inset 0 0 30px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
+            color: #fff; text-shadow: 0 0 15px #ffd700;
+            border-color: #ffd700; transform: scale(1.15);
+        }
+
+        .dial p { margin: 0; font-size: 12px; color: #ccc; transition: color 0.3s ease; }
+        
+        .winner-dial + p { color: #ffd700; font-weight: bold; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+
+        .lever-container {
+            display: flex; justify-content: center; align-items: center;
+            gap: 16px; flex-wrap: wrap; margin-bottom: 20px;
+        }
+
+        .study-btn {
+            background: linear-gradient(to bottom, #173a24, #0a2412);
+            border: 3px solid var(--gold-mid); color: var(--gold-light);
+            font-family: 'Cairo', sans-serif; font-size: 18px; font-weight: 800;
+            padding: 12px 26px; border-radius: 10px; cursor: pointer;
+            box-shadow: 0 6px 0 #062a12, 0 10px 12px rgba(0,0,0,0.7), inset 0 2px 5px rgba(255,255,255,0.15);
+            transition: all 0.15s ease;
+        }
+
+        .study-btn:active { transform: translateY(6px); box-shadow: 0 0 0 #062a12, 0 4px 8px rgba(0,0,0,0.7); }
+
+        .study-btn:disabled {
+            opacity: 0.4; cursor: not-allowed; filter: grayscale(0.6);
+            transform: none;
+        }
+
+        .study-btn:not(:disabled):hover {
+            background: linear-gradient(to bottom, #1e5c38, #123d22); color: #fff;
+            box-shadow: 0 6px 0 #062a12, 0 12px 20px rgba(46,204,113,0.25);
+        }
+
+        .lever-btn {
+            background: linear-gradient(to bottom, #8b0000, #4a0000);
+            border: 3px solid var(--gold-mid); color: var(--gold-light);
+            font-family: 'Cairo', sans-serif; font-size: 22px; font-weight: 800;
+            padding: 12px 50px; border-radius: 10px; cursor: pointer;
+            box-shadow: 0 8px 0 #3a0000, 0 12px 15px rgba(0,0,0,0.7), inset 0 2px 5px rgba(255,255,255,0.2);
+            transition: all 0.1s ease;
+        }
+
+        .lever-btn:active {
+            transform: translateY(8px); box-shadow: 0 0 0 #3a0000, 0 4px 8px rgba(0,0,0,0.7), inset 0 4px 8px rgba(0,0,0,0.5);
+        }
+
+        .timer-section {
+            margin-top: 25px; border-top: 2px dashed rgba(212, 175, 55, 0.4);
+            padding-top: 20px; text-align: center;
+            opacity: 0.3; pointer-events: none; transition: all 0.5s ease;
+        }
+
+        .timer-section.ready { opacity: 1; pointer-events: auto; }
+
+        .retro-clock-container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        .retro-clock {
+            width: 130px; height: 130px; border-radius: 50%;
+            background: radial-gradient(circle, #1a0f08 0%, #050201 100%);
+            border: 5px solid var(--gold-mid);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 15px rgba(0,0,0,0.9);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            margin-bottom: 15px; position: relative; transition: all 0.3s ease;
+        }
+
+        .timer-section.ready .retro-clock {
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.4), inset 0 0 20px rgba(0,0,0,0.9); border-color: #2ecc71;
+        }
+
+        #timer-display {
+            font-family: 'Cairo', sans-serif; font-size: 32px; font-weight: 800;
+            color: var(--gold-light); text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+        .timer-label { font-size: 12px; color: #bfa15f; margin-bottom: 10px;}
+
+        .timer-btn {
+            background: linear-gradient(to bottom, #104020, #05200f);
+            border: 2px solid #2ecc71; color: #2ecc71;
+            font-family: 'Cairo', sans-serif; font-size: 18px; font-weight: bold;
+            padding: 10px 30px; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2); transition: all 0.2s ease;
+        }
+
+        .timer-btn:hover {
+            background: linear-gradient(to bottom, #155724, #0a3618); color: #fff;
+            box-shadow: 0 4px 20px rgba(46, 204, 113, 0.5); transform: scale(1.05);
+        }
+
+        .timer-alert {
+            color: #ff4d4d !important; text-shadow: 0 0 15px rgba(255, 77, 77, 0.8) !important;
+            animation: pulseAlert 0.5s infinite alternate;
+        }
+
+        @keyframes pulseAlert { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        @keyframes popOut { 0% { transform: scale(0.8); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+
+        .imaging-panel {
+            background: linear-gradient(to bottom, #050201, #120a04);
+            border: 3px solid var(--gold-mid);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 0 0 25px 0;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.9), 0 0 20px rgba(212,175,55,0.15);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(-10px);
+            transition: max-height 0.6s ease, opacity 0.5s ease, transform 0.5s ease, box-shadow 0.4s ease;
+        }
+
+        .imaging-panel.visible {
+            max-height: 700px;
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.9), 0 0 35px rgba(46, 204, 113, 0.15), 0 0 20px rgba(212,175,55,0.35);
+        }
+
+        .imaging-header {
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--gold-light); font-weight: 800; font-size: 15px;
+            padding-bottom: 10px; margin-bottom: 10px;
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .imaging-label {
+            font-size: 13px; font-weight: 800; text-align: center; color: #ffef96;
+            letter-spacing: 0.5px;
+            background: linear-gradient(to bottom, rgba(212,175,55,0.22), rgba(212,175,55,0.08));
+            border: 1px solid rgba(212,175,55,0.45);
+            border-radius: 6px;
+            padding: 5px 12px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 8px rgba(212,175,55,0.6);
+        }
+
+        .imaging-screen {
+            background: #000;
+            border-radius: 10px;
+            padding: 8px;
+            border: 2px solid #444;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60px;
+        }
+
+        .imaging-screen img {
+            max-width: 100%;
+            max-height: 340px;
+            width: auto;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .imaging-hint {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #2ecc71;
+            line-height: 1.7;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .imaging-credit {
+            margin-top: 6px;
+            font-size: 10px;
+            color: #8a7a4f;
+            text-align: center;
+        }
+
+        .study-overlay {
+            position: fixed; inset: 0; z-index: 100;
+            background: rgba(5,3,1,0.78); backdrop-filter: blur(4px);
+            display: flex; align-items: center; justify-content: center;
+            padding: 15px;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+
+        .study-overlay.visible { opacity: 1; pointer-events: auto; }
+
+        .study-modal {
+            width: 94%; max-width: 720px; max-height: 90vh;
+            display: flex; flex-direction: column;
+            background: linear-gradient(135deg, var(--leather-light), var(--leather-dark));
+            border: 5px solid;
+            border-image: linear-gradient(to bottom right, var(--gold-light), var(--gold-dark), var(--gold-light)) 1;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.95), inset 0 0 40px rgba(0,0,0,0.8), 0 0 50px rgba(212,175,55,0.2);
+            animation: modalPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalPop { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+        .study-modal-header {
+            display: flex; justify-content: space-between; align-items: center; gap: 12px;
+            padding: 14px 20px; border-bottom: 2px solid rgba(212,175,55,0.35);
+            background: linear-gradient(to bottom, rgba(212,175,55,0.15), transparent);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .study-modal-cat { font-size: 12px; color: #bfa15f; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 2px; }
+
+        .study-modal-title { font-size: 21px; color: var(--gold-light); font-weight: 800; text-shadow: 0 0 15px rgba(212,175,55,0.5); }
+
+        .study-close-btn {
+            width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--gold-mid);
+            background: linear-gradient(to bottom, #4a0d0d, #2a0000); color: var(--gold-light);
+            font-size: 15px; cursor: pointer; flex-shrink: 0;
+            transition: all 0.15s ease;
+        }
+
+        .study-close-btn:hover { background: #6b1111; box-shadow: 0 0 12px rgba(212,175,55,0.5); transform: rotate(90deg); }
+
+        .study-modal-body { overflow-y: auto; padding: 14px 20px; flex: 1; }
+
+        .study-modal-img-box { text-align: center; margin-bottom: 12px; }
+
+        .study-modal-img-box img {
+            max-width: 100%; max-height: 170px; border-radius: 10px;
+            border: 2px solid #444; background: #000;
+        }
+
+        .study-modal-img-label { font-size: 11px; color: #bfa15f; margin-top: 4px; font-weight: bold; }
+        .study-modal-img-cap { font-size: 12px; color: #2ecc71; margin-top: 2px; }
+
+        .study-section { margin-bottom: 13px; }
+
+        .study-section-head {
+            display: flex; align-items: center; gap: 8px;
+            font-weight: 800; font-size: 15px; color: #ffef96;
+            padding: 7px 12px; border-radius: 8px; margin-bottom: 8px;
+            background: linear-gradient(to bottom, rgba(212,175,55,0.22), rgba(212,175,55,0.06));
+            border: 1px solid rgba(212,175,55,0.4);
+            text-shadow: 0 0 8px rgba(212,175,55,0.6);
+        }
+
+        .study-section-body {
+            background: rgba(0,0,0,0.35); border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 10px; padding: 10px 14px;
+            font-size: 13.5px; line-height: 1.9; color: #e8d9a8;
+        }
+
+        .study-line { padding: 2px 0; }
+        .study-line::before { content: '◆'; color: var(--gold-mid); font-size: 9px; margin-left: 8px; vertical-align: middle; }
+
+        .study-modal-footer {
+            padding: 12px 20px; border-top: 2px solid rgba(212,175,55,0.35);
+            display: flex; justify-content: space-between; align-items: center; gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .study-foot-btn {
+            font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 15px; cursor: pointer;
+            border-radius: 10px; padding: 10px 20px; transition: all 0.15s ease;
+        }
+
+        .study-foot-btn.close { background: transparent; border: 2px solid rgba(212,175,55,0.5); color: var(--gold-light); }
+        .study-foot-btn.close:hover { background: rgba(212,175,55,0.15); }
+
+        .study-foot-btn.go { background: linear-gradient(to bottom, #104020, #05200f); border: 2px solid #2ecc71; color: #2ecc71; }
+        .study-foot-btn.go:hover { background: #155724; color: #fff; box-shadow: 0 4px 20px rgba(46,204,113,0.4); }
+    </style>
+</head>
+<body>
+
+    <div class="medical-bg-animation"></div>
+    <div class="pulsing-lights" id="bg-pulser"></div>
+
+    <div class="antique-machine" id="main-machine">
+        
+        <div class="plaque">
+            <h1>الزَّتُونَة</h1>
+            <p>مُسْتَخْرَجُ الحَالَاتِ الطِّبِّيَّةِ الأَسَاسِيَّة</p>
+            <div class="owner">DR Mohanad Hamad</div>
+        </div>
+
+        <div class="glass-dome" id="glass-screen">
+            <div class="cylinder-window">
+                <div id="disease-display">🎯 اسحب الذراع لتبدأ دراستك 🎯</div>
+            </div>
+        </div>
+
+        <div class="imaging-panel" id="imaging-panel">
+            <div class="imaging-header">
+                <span>📋 لوحة العرض التشخيصي</span>
+            </div>
+            <div class="imaging-label" id="imaging-label">—</div>
+            <div class="imaging-screen">
+                <img id="imaging-img" crossorigin="anonymous" alt="صورة تشخيصية">
+            </div>
+            <div class="imaging-hint" id="imaging-hint"></div>
+            <div class="imaging-credit">المصدر: Wikimedia Commons · رخصة المشاع الإبداعي — يمكنك استبدال الصورة من الكود</div>
+        </div>
+
+        <div class="dials-container">
+            <div class="dial"><div class="dial-circle" id="dial-0">🩺</div><p>الباطنة</p></div>
+            <div class="dial"><div class="dial-circle" id="dial-1">⚡</div><p>أشعة وتداخلية</p></div>
+            <div class="dial"><div class="dial-circle" id="dial-2">🦴</div><p>عظام</p></div>
+            <div class="dial"><div class="dial-circle" id="dial-3">👶</div><p>أطفال</p></div>
+            <div class="dial"><div class="dial-circle" id="dial-4">🔪</div><p>جراحة</p></div>
+            <div class="dial"><div class="dial-circle" id="dial-5">❤️</div><p>قلب</p></div>
+        </div>
+
+        <div class="lever-container">
+            <button class="lever-btn" id="spin-button" onclick="spinSlot()">اسحب ذراع الزتونة</button>
+            <button class="study-btn" id="study-btn" onclick="openStudyModal()" disabled title="اسحب الذراع أولاً لاختيار حالة">دراسة الحالة 📖</button>
+        </div>
+
+        <div class="timer-section" id="timer-section">
+            <div class="retro-clock-container">
+                <div class="retro-clock">
+                    <div id="timer-display">00:30</div>
+                    <div class="timer-label">ثانية للشرح</div>
+                </div>
+                <button class="timer-btn" id="start-timer-btn" onclick="startCountdown()">بدء التحدي ⏱️</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="study-overlay" id="study-overlay" hidden>
+        <div class="study-modal" role="dialog" aria-modal="true">
+            <div class="study-modal-header">
+                <div>
+                    <div class="study-modal-cat" id="study-modal-cat">—</div>
+                    <div class="study-modal-title" id="study-modal-title">—</div>
+                </div>
+                <button class="study-close-btn" onclick="closeStudyModal()" aria-label="إغلاق">✕</button>
+            </div>
+            <div class="study-modal-body">
+                <div class="study-modal-img-box">
+                    <img id="study-modal-img" crossorigin="anonymous" alt="صورة تشخيصية">
+                    <div class="study-modal-img-label" id="study-modal-img-label"></div>
+                    <div class="study-modal-img-cap" id="study-modal-img-cap"></div>
+                </div>
+                <div class="study-section">
+                    <div class="study-section-head">🩺 Symptoms &amp; Presentation</div>
+                    <div class="study-section-body" id="study-symptoms"></div>
+                </div>
+                <div class="study-section">
+                    <div class="study-section-head">🩻 Physical Examination</div>
+                    <div class="study-section-body" id="study-examination"></div>
+                </div>
+                <div class="study-section">
+                    <div class="study-section-head">🔬 Investigations &amp; Diagnosis</div>
+                    <div class="study-section-body" id="study-investigations"></div>
+                </div>
+                <div class="study-section">
+                    <div class="study-section-head">💊 Management &amp; Guidelines</div>
+                    <div class="study-section-body" id="study-management"></div>
+                </div>
+                <div class="study-section">
+                    <div class="study-section-head">🧩 Differential Diagnosis</div>
+                    <div class="study-section-body" id="study-differentials"></div>
+                </div>
+            </div>
+            <div class="study-modal-footer">
+                <button class="study-foot-btn close" onclick="closeStudyModal()">Close 📕</button>
+                <button class="study-foot-btn go" onclick="startChallenge()">Start Challenge ⏱️</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (() => {
+        // كل مرض له صورة تشخيصية مميزة (imageUrl) + تسميتها (imageLabel) + الإشارة المفتاحية (imageCaption).
+        // 46 مرضاً عالي الأهمية للامتحانات (IFOM) عبر 6 تخصصات. الصور من ويكيميديا كومنز (مصادرها في تعليق البداية).
+        // المصادر الأصلية (Wikimedia Commons) لكل صورة — استبدل imageUrl بصورتك الخاصة متى شئت:
+        // COP: COPD | Pneumonia: Air bronchogram | TB: Miliary tuberculosis | Pancoast: Pancoast tumor annotated
+        // Cirrhosis: Cirrhosis of the liver CT | Pancreatitis: Acute pancreatitis CT | Gout: Gout and Tophus
+        // Sickle: Sickle cell disease blood smear | Malaria: Plasmodium falciparum ring forms | Wilson: Kayser-Fleischer ring and sunflower cataract
+        // Stroke: DWI/ADC stroke MRI | SAH: SAH CT basal cisterns | PAD: Monckeberg arteriosclerosis aortogram | Scaphoid: Scaphoid fracture arrowed
+        // Hip disl.: Posterior hip dislocation | OA: Knee joint effusion & osteophytes | RA: Rheumatoid arthritis hands (CC0)
+        // Ankyl spond.: Bamboo spine | Paget: Paget disease of bone tibia | Cauda: Epidural abscess MRI
+        // Intussusception: Target sign US | Pyloric: Pyloric stenosis US | Kawasaki: Strawberry tongue | Measles: Koplik spots
+        // Perf. ulcer: Free air under diaphragm | Cholecystitis: Gallstone US | Diverticulitis: Diverticulitis annotated CT
+        // AF/CHB/WPW/Hyperkalemia: classic 12-lead ECG tracings (PD) | ACS: 12 Lead EKG ST Elevation tracing (PD)
+        // Osteosarcoma: Osteosarcoma of the tibia | Femoral neck: Mediale Schenkelhalsfraktur (Hellerhoff) | AVN: Idiopathic avascular necrosis (CC0)
+        // HCC: Triphasic CT of HCC | Aortic diss.: Descending Type B Aortic Dissection | PE: CTA Chest Massive PE | Appendicitis: Appendizitis5ct (Hellerhoff)
+        // Bowel obst.: Upright abdominal X-ray | TOF: CongenitalHeartCase-133 | CF: Chest X-ray hyperinflated bronchiectasis (PD)
+        // DKA: Comp.Urine.Test.Strip | Thyrotoxicosis: Thyroid scintigraphy | Septic shock: Neutrophils with intracellular bacteria
+        // Compartment: Acute Compartment Syndrome blister formation
+                const diseases = [
+            { text: "الحماض الكيتوني السكري<br><span style='font-size:18px; color:#ccc;'>(DKA)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/de1425864668fd33990bf3da9029877b.jpg",
+              imageLabel: "شريط تحليل البول (Urine Dipstick)",
+              imageCaption: "كيتونات ++++ وسكر +++ في البول (Ketonuria) مع فرط سكر الدم — العلامة المختبرية المميزة.",
+              symptoms: "Polydipsia, polyuria, weakness and fatigue\nNausea, vomiting and abdominal pain\nDeep rapid (Kussmaul) breathing with a fruity/acetone breath odor\nProgressive drowsiness to coma — classic in T1DM with missed insulin, infection or stress",
+              examination: "Dehydration: dry mucosa, reduced skin turgor, tachycardia, hypotension\nKussmaul respirations; acetone breath\nAltered mental status (GCS drop)\nAbdominal tenderness WITHOUT peritonism (mimics acute abdomen)",
+              investigations: "Gold standard: ABG — high-anion-gap metabolic acidosis + serum/urine ketones\nGlucose >250 mg/dL (start treatment on clinical suspicion alone)\nElectrolytes — K+ may look normal/high despite severe total-body deficit\nCBC, urinalysis, cultures to identify the precipitant; ECG for K+ effects",
+              management: "IV fluids FIRST: isotonic saline 1 L in the first hour, then titrated\nContinuous IV insulin infusion once K+ >3.3 mEq/L\nReplace potassium aggressively and monitor every 1-2 h\nTransition to SC insulin with dextrose at ~200-250 mg/dL; treat the precipitant",
+              differentials: "Lactic acidosis: elevated lactate, no significant ketones\nUremic acidosis: high BUN/creatinine + hyperkalemia\nStarvation/alcoholic ketoacidosis: normal or low glucose\nMethanol/salicylate toxicity: high osmolar gap, severe acidosis — history and levels" }
+,
+            { text: "التسمم الدرقي<br><span style='font-size:18px; color:#ccc;'>(Thyroid Storm)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/289b86cd85dbcd31f774fbbc67ef82c2.jpg",
+              imageLabel: "مسح الغدة بالنظائر (Scintigraphy)",
+              imageCaption: "مسح بالنظائر (99mTc): الأنماط A-E لاضطرابات الغدة الدرقية — انتشار منتظم زائد (Graves) في التسمم الدرقي.",
+              symptoms: "Fever >38-41°C with profuse sweating\nTachycardia >130 bpm and tachypnea\nAgitation, tremor, delirium or psychosis\nNausea, vomiting, diarrhea — precipitated by infection, iodine load, thyroid surgery or DKA in uncontrolled hyperthyroidism",
+              examination: "Hyperthermia; warm, moist skin\nTachycardia; atrial fibrillation may be present\nFine tremor, lid lag, hyperreflexia; palpable goiter ± bruit\nConfusion, stupor or coma in severe cases",
+              investigations: "Gold standard: suppressed TSH with high free T4/free T3 — start therapy without waiting\nECG (AF, rate), CBC, electrolytes, glucose\nBlood cultures and CXR if infection is the precipitant\nLFTs before methimazole (hepatotoxicity)",
+              management: "Propranolol (or IV esmolol) to control adrenergic features\nThionamide FIRST: propylthiouracil (blocks T4→T3), then methimazole\nIodine (Lugol/SSKI) given 1 hour AFTER the thionamide + hydrocortisone\nAcetaminophen only for fever (aspirin displaces T4 from binding proteins); treat the precipitant",
+              differentials: "Panic attack/anxiety: no fever, normal thyroid function\nSepsis: positive cultures, normal TSH\nPheochromocytoma: elevated metanephrines, paroxysms\nSerotonin syndrome/amphetamines: drug history, different exam" }
+,
+            { text: "الإنتان والصدمة الإنتانية<br><span style='font-size:18px; color:#ccc;'>(Septic Shock)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/cd1f231ed8ec41a23e32f9dd45b98be3.png",
+              imageLabel: "مسحة دم محيطية (Blood Smear)",
+              imageCaption: "خلايا متعادلة تحوي بكتيريا داخل الخلية (Intracellular bacteria) — علامة الانتان الشامل الأشد خطورة.",
+              symptoms: "Fever or hypothermia with rigors\nDyspnea, tachypnea and tachycardia\nHypotension (MAP <65) requiring vasopressors despite adequate fluid resuscitation\nDecreased urine output, confusion, cold mottled skin — lactate >2 mmol/L",
+              examination: "Hypotension, tachycardia, tachypnea\nAltered mentation; poor capillary refill; mottled/cold extremities\nSeek the source: lungs (crackles), abdomen (peritonism), urine (loin pain), skin/line infection",
+              investigations: "Gold standard: 2-3 sets of blood cultures PLUS urine/sputum cultures BEFORE antibiotics\nABG + serum lactate (risk stratification)\nCBC with differential, CRP/PCT, renal/liver panel, coagulation\nImaging of the suspected source (CXR, CT abdomen, US) without delaying antibiotics",
+              management: "Broad-spectrum IV antibiotics within 1 hour of recognition (after cultures)\nCrystalloids 30 mL/kg for hypotension or lactate ≥4\nNorepinephrine is the first-line vasopressor (target MAP ≥65)\nSource control: drain abscess, remove infected line, surgery for necrotizing infection; reassess lactate and urine output",
+              differentials: "Cardiogenic shock: pulmonary edema, raised JVP, poor response to fluids — echo\nHypovolemic shock: hemorrhage/dehydration, responds briskly to volume\nMassive PE: sudden onset, CTPA/echo\nAdrenal crisis: refractory hypotension until hydrocortisone — hyponatremia/hyperkalemia" }
+,
+            { text: "الداء الرئوي الانسدادي المزمن<br><span style='font-size:18px; color:#ccc;'>(COPD)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/331b3aeaec96144acdd281f7670ab9c5.jpg",
+              imageLabel: "أشعة صدر (X-Ray)",
+              imageCaption: "حجاب حاجز مسطح (Flattened diaphragm) + قلب صغير عمودي + فرط انتفاخ رئوي — علامات الـ COPD الشعاعية.",
+              symptoms: "Progressive exertional dyspnea in an older smoker\nChronic cough with sputum and wheeze\nFrequent exacerbations with viral infections\nMorning headache, drowsiness (hypercapnia) and ankle edema in advanced disease",
+              examination: "Barrel chest with hyperinflation; prolonged expiration and wheeze\nUse of accessory muscles and pursed-lip breathing\nDecreased breath sounds; cyanosis and peripheral edema (cor pulmonale)\nCachexia and muscle wasting in advanced disease",
+              investigations: "Gold standard: spirometry — post-bronchodilator FEV1/FVC <0.7 (fixed obstruction)\nCXR: hyperinflation, flattened diaphragms, small vertical heart\nABG in exacerbation: type 2 respiratory failure (CO2 retention)\nAlpha-1-antitrypsin level if young smoker or family history of early emphysema",
+              management: "Smoking cessation is the single most effective intervention + influenza/pneumococcal vaccines\nBronchodilators: SABA first; add LAMA and/or LABA according to symptoms\nICS only in frequent exacerbators (blood eosinophilia-guided)\nLong-term oxygen (>15 h/day) for chronic hypoxemia; NIV (BiPAP) for hypercapnic exacerbation",
+              differentials: "Asthma: reversible obstruction, onset in youth, atopy\nHeart failure: crackles, orthopnea, cardiomegaly, high BNP\nBronchiectasis: copious purulent sputum, clubbing, coarse crackles\nTB: subacute fever, night sweats, apical disease" }
+,
+            { text: "الالتهاب الرئوي الجرثومي<br><span style='font-size:18px; color:#ccc;'>(Pneumonia)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/7fc70ffc6252ee3f90fd4e3d70a1cfb2.jpg",
+              imageLabel: "أشعة صدر (X-Ray)",
+              imageCaption: "اعتما قة فصية (Lobar consolidation) مع علامة الهواء القصبي (Air bronchogram) — الالتهاب الرئوي.",
+              symptoms: "Acute onset fever and chills\nCough with purulent or blood-streaked sputum\nPleuritic chest pain and dyspnea\nElderly patients may present only with confusion, falls or delirium",
+              examination: "Fever, tachypnea, tachycardia\nBronchial breath sounds, crackles and egophony over the affected lobe\nDullness to percussion; decreased breath sounds if effusion\nHypoxia on pulse oximetry",
+              investigations: "Gold standard in practice: CXR — lobar or patchy consolidation ± air bronchogram\nCBC and CRP\nSputum and blood cultures in admitted/severe patients\nABG and CURB-65 score to decide admission; urine antigen for Legionella/pneumococcus in severe cases",
+              management: "Antibiotics per severity (IDSA/ATS): amoxicillin or amoxicillin-clavulanate + macrolide in hospital\nOxygen to SaO2 ≥94%; IV fluids; antipyretics\nClinical reassessment at 48-72 h\nPrevention: pneumococcal and influenza vaccination in at-risk groups",
+              differentials: "PE: sudden dyspnea, pleuritic pain, positive D-dimer/CTPA\nHeart failure: BNP elevated, pulmonary edema pattern\nLung cancer: chronic symptoms, mass on CXR, weight loss\nTB: subacute fever, apical infiltrates, positive smear; Bronchiectasis: chronic purulent sputum" }
+,
+            { text: "السل الدخني<br><span style='font-size:18px; color:#ccc;'>(Miliary TB)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/1b2a4e9334f8c8272f67a30c51fee1bb.jpg",
+              imageLabel: "أشعة صدر (X-Ray)",
+              imageCaption: "تسللات دخنية (Miliary nodules) منتشرة في كامل الرئتين — السل الدخني.",
+              symptoms: "Subacute fever (evening peaks) and night sweats\nWeight loss, malaise and dry cough\nHepatosplenomegaly and lymphadenopathy in hematogenous spread\nMore common in immunocompromised hosts and young children",
+              examination: "Fever and cachexia\nHepatosplenomegaly; generalized lymphadenopathy\nChoroidal tubercles on fundoscopy (pathognomonic if present)\nMeningism (neck stiffness) if CNS involvement",
+              investigations: "Gold standard for the miliary pattern: CXR/CT showing diffuse 1-2 mm millet-seed nodules throughout both lungs\nSputum smear (Ziehl-Neelsen) + culture; IGRA/TST\nBiopsy of lymph node/liver or bone marrow if sputum negative\nLP with CSF studies if CNS symptoms; HIV testing",
+              management: "Standard regimen: isoniazid + rifampicin + pyrazinamide + ethambutol for 2 months, then INH + RIF for 4-7 months\nPyridoxine (B6) with INH to prevent peripheral neuropathy\nRespiratory isolation until 3 negative smears; monitor LFTs\nTreat complications (TB meningitis — steroids); notify public health",
+              differentials: "Miliary metastases: biopsy distinguishes\nSarcoidosis: bilateral hilar adenopathy, often asymptomatic\nDisseminated fungal infection: endemic exposure, cultures\nSilicosis: occupational exposure, fibrotic upper-lobe nodules" }
+,
+            { text: "ورم بانكوست<br><span style='font-size:18px; color:#ccc;'>(Pancoast Tumor)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/1cc954a9e6c5848a7486821f259502c2.jpg",
+              imageLabel: "أشعة مقطعية CT",
+              imageCaption: "كتلة قمية (Apical mass) محددة بحرف P — ورم بانكوست المصحوب بمتلازمة هورنر.",
+              symptoms: "Shoulder and inner-arm pain (T1) radiating to the ulnar aspect of the hand\nWeakness and atrophy of intrinsic hand muscles\nHorner syndrome: ptosis, miosis, anhidrosis — same side\nHeavy smoker with an apical lung mass; occasionally SVC obstruction",
+              examination: "Horner syndrome on the ipsilateral side\nWasting/weakness of hand muscles (T1/brachial plexus)\nSupraclavicular mass on palpation\nReduced chest expansion; absent sweating on the affected face/arm",
+              investigations: "Gold standard: CT-guided needle biopsy of the apical mass\nCXR: apical mass ± erosion of the 1st-2nd ribs\nMRI to assess brachial plexus and vertebral extension\nPET-CT for staging; bronchoscopy/EBUS if central disease",
+              management: "Definitive: neoadjuvant chemoradiation then surgical resection (lung ± chest wall)\nAlternatively surgery followed by adjuvant radiation\nNeuropathic pain management (gabapentin, opioids, palliative RT)\nSurveillance for brain and bone metastases",
+              differentials: "Apical TB: fever, positive smear, responsive to anti-TB\nNeurogenic tumor (schwannoma): different imaging, benign histology\nLung metastasis: known primary malignancy\nMesothelioma: asbestos exposure with pleural thickening\nLymphoma: nodal disease elsewhere" }
+,
+            { text: "تليف الكبد<br><span style='font-size:18px; color:#ccc;'>(Cirrhosis)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/80200413cb7eb3fded56dec98174d787.jpg",
+              imageLabel: "أشعة مقطعية CT",
+              imageCaption: "كبد عقدي (Nodular) مصغّر غير منتظم الحواف — تليف الكبد التشمعي.",
+              symptoms: "Fatigue, anorexia and muscle wasting\nAbdominal distension (ascites) and leg swelling\nJaundice, pruritus and easy bruising/bleeding\nConfusion and sleep-wake reversal (hepatic encephalopathy); gynecomastia and loss of libido",
+              examination: "Jaundice; spider angiomas, palmar erythema, Dupuytren contracture\nAscites (shifting dullness, fluid wave); splenomegaly; caput medusae\nAsterixis (flapping tremor) and fetor hepaticus in encephalopathy\nGynecomastia, testicular atrophy; peripheral edema",
+              investigations: "Gold standard for definitive staging: liver biopsy — practically Fibroscan/elastography\nLFTs: low albumin, elevated INR/bilirubin; CBC: thrombocytopenia (portal HTN)\nSerologies: HBV/HCV, alcohol history, NAFLD/metabolic screen, autoimmune panel\n6-monthly ultrasound + AFP screening for HCC",
+              management: "Treat the cause: antivirals for HBV/HCV, abstinence, weight loss\nAscites: salt restriction + spironolactone (± furosemide); paracentesis with albumin if tense\nVariceal hemorrhage: endoscopic band ligation + terlipressin/octreotide, TIPS if refractory\nEncephalopathy: lactulose ± rifaximin; vaccinate HAV/HBV; liver transplant in decompensated disease (MELD)",
+              differentials: "HCC: hepatic mass with rising AFP, triphasic-CT washout\nRight heart failure: hepatic congestion with cardiac signs, raised JVP\nBudd-Chiari: hepatic vein thrombosis on Doppler\nAlpha-1-antitrypsin deficiency: young patient, low A1AT\nPrimary biliary cholangitis: cholestatic LFTs, +AMA" }
+,
+            { text: "التهاب البنكرياس الحاد<br><span style='font-size:18px; color:#ccc;'>(Acute Pancreatitis)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/246834da49796a5502ad750af115fcdc.jpg",
+              imageLabel: "أشعة مقطعية CT",
+              imageCaption: "تجمع سوائل حول البنكرياس (Peripancreatic fluid) والتهاب دهون — التهاب البنكرياس الحاد.",
+              symptoms: "Sudden severe epigastric pain radiating straight to the back\nPain partially relieved by leaning forward\nPersistent vomiting and low-grade fever\nMost common causes: gallstones, then alcohol — history of biliary colic or heavy drinking",
+              examination: "Epigastric tenderness with guarding; reduced bowel sounds (ileus)\nFever and tachycardia; signs of hypovolemia\nGrey Turner (flank) or Cullen (periumbilical) bruising — late hemorrhagic signs\nHypotension in severe necrotizing pancreatitis",
+              investigations: "Gold standard: serum lipase >3x ULN (more sensitive/specific than amylase)\nCBC, electrolytes, calcium, LFTs (biliary etiology), glucose\nUS abdomen for gallstones\nContrast CT (Balthazar/CTSI) if no improvement at 48-72 h or suspected necrosis/pseudocyst",
+              management: "Aggressive IV crystalloids (lactated Ringer preferred) — early goal-directed\nAnalgesia with opioids (NSAIDs avoided)\nEarly enteral (nasojejunal) feeding when tolerated\nERCP within 24-72 h for cholangitis or persistent obstruction; drain/surgery infected necrosis; ICU in severe disease",
+              differentials: "Perforated peptic ulcer: free air under diaphragm on erect CXR\nAcute coronary syndrome: ECG and troponin\nBowel obstruction: dilated loops with air-fluid levels on AXR\nAcute cholecystitis: RUQ pain + Murphy sign + US\nRuptured AAA: pulsatile abdominal mass, shock, CT" }
+,
+            { text: "النقرس<br><span style='font-size:18px; color:#ccc;'>(Gout)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/1e4c75fe4f40e1aa1e56242047c87ff4.jpg",
+              imageLabel: "صورة سريرية (Tophi)",
+              imageCaption: "ترسبات توفي (Tophi) حول مفصل إصبع القدم الكبير — النقرس.",
+              symptoms: "Sudden, excruciating monoarticular pain — classically the first MTP (podagra)\nRed, hot, swollen joint that awakens the patient from sleep\nSpontaneous resolution over days\nHistory of hyperuricemia, prior attacks, or a purine-rich diet",
+              examination: "Acute monoarthritis: erythema, warmth, swelling, exquisite tenderness\nTophi (chronic): firm subcutaneous nodules over joints, helix of the ear\nReduced range of motion of the affected joint\nDesquamation of overlying skin during resolution",
+              investigations: "Gold standard: joint aspiration — needle-shaped, NEGATIVELY birefringent monosodium urate crystals\nSerum uric acid (may be normal during an acute attack)\nXR in chronic disease: punched-out 'rat-bite' erosions with overhanging edges, tophi\nCBC and ESR — essential to exclude septic arthritis",
+              management: "Acute attack: NSAID, colchicine, or corticosteroid (oral/intra-articular)\nDo NOT start urate-lowering therapy during the acute attack\nChronic: allopurinol/febuxostat titrated to urate <6 mg/dL (+colchicine prophylaxis)\nLifestyle: low-purine diet, avoid alcohol and loop diuretics",
+              differentials: "Septic arthritis: ALWAYS exclude first — aspirate Gram stain/culture, more toxic patient\nPseudogout: CPPD crystals (positively birefringent), knee > MTP\nTrauma: history and imaging\nOsteoarthritis: mechanical pain, no acute inflammation\nReactive arthritis: recent GI/GU infection, multiple joints" }
+,
+            { text: "فقر الدم المنجلي<br><span style='font-size:18px; color:#ccc;'>(Sickle Cell Disease)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/0a6c4cbf6be2005113c85eb4c8e4897b.jpg",
+              imageLabel: "مسحة دم محيطية (Blood Smear)",
+              imageCaption: "خلايا منجلية (Sickle cells) في مسحة الدم المحيطية — فقر الدم المنجلي.",
+              symptoms: "Recurrent severe painful vaso-occlusive crises (bones, chest, abdomen)\nFatigue, pallor and mild jaundice\nAcute chest syndrome: fever + chest pain + new infiltrate + hypoxia\nLeg ulcers, priapism; recurrent infections in childhood",
+              examination: "Pallor and jaundice; dactylitis in infants (swollen digits)\nSplenomegaly early, then autosplenectomy (functionally asplenic)\nHepatomegaly; leg ulcers; chronic scars\nAcute chest: crackles, hypoxia, fever; abdominal tenderness during crises",
+              investigations: "Gold standard: hemoglobin electrophoresis showing HbS\nPeripheral smear: sickle cells, Howell-Jolly bodies (asplenia)\nCBC + reticulocyte count; sickle solubility test\nNewborn screening (HPLC/PCR); CXR/ABG for acute chest syndrome",
+              management: "Pain crisis: IV hydration, oxygen if hypoxic, opioids (PCA), NSAIDs\nDaily folic acid; hydroxyurea reduces crisis frequency and acute chest\nPenicillin prophylaxis + pneumococcal/meningococcal vaccines in children\nExchange transfusion for acute chest, stroke, or priapism; transplant in severe disease",
+              differentials: "Osteomyelitis: focal fever + positive cultures/imaging\nAcute abdomen (appendicitis, cholecystitis): must be excluded during crises\nRheumatic fever: preceding pharyngitis, Jones criteria\nIron deficiency/other anemias: iron studies, smear\nDVT: Doppler, unilateral swelling" }
+,
+            { text: "الملاريا<br><span style='font-size:18px; color:#ccc;'>(Malaria)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/4a01fdb4a3d20f0483986f11d74c49f5.jpg",
+              imageLabel: "مسحة دم محيطية (Blood Smear)",
+              imageCaption: "حلقات (Ring forms) داخل كريات الدم الحمراء — الملاريا.",
+              symptoms: "Periodic fever with chills, rigors and sweats (every 48-72 h)\nHeadache, myalgia, nausea and vomiting\nFatigue and malaise between paroxysms\nSevere (P. falciparum): confusion (cerebral malaria), jaundice, oliguria — traveler from an endemic area",
+              examination: "High fever with rigors; pallor\nSplenomegaly and hepatomegaly\nJaundice in severe disease\nSevere: altered consciousness, seizures, hypotension, hypoglycemia, tachypnea",
+              investigations: "Gold standard: thick and thin blood smears — ring forms/trophozoites (repeat ×3 if negative)\nRapid diagnostic test (RDT) for antigen\nCBC: thrombocytopenia + anemia\nGlucose, renal/liver function; blood cultures to exclude coinfection",
+              management: "Uncomplicated falciparum: artemisinin-based combination (artemether-lumefantrine)\nSevere: IV artesunate + ICU supportive care\nvivax/ovale: chloroquine (where sensitive) + primaquine to clear hypnozoites (check G6PD)\nSupportive: fluids, glucose, hemodialysis if renal failure; prevent transmission",
+              differentials: "Typhoid: sustained fever, relative bradycardia, positive cultures\nDengue: retro-orbital pain, rash, bleeding tendency\nLeptospirosis: calf tenderness, jaundice, renal involvement\nViral fever/meningitis: negative smears, CSF studies" }
+,
+            { text: "مرض ويلسون<br><span style='font-size:18px; color:#ccc;'>(Wilson Disease)</span>", cat: 0,
+              imageUrl: "https://user.uploads.dev/file/2c367094b7dd3caa618f9c989d8acf4b.jpg",
+              imageLabel: "صورة سريرية (Eye)",
+              imageCaption: "حلقة كايزر-فليشر (Kayser-Fleischer ring) وإعتام عدسة الشمس — مرض ويلسون.",
+              symptoms: "Hepatic: jaundice, ascites, or acute liver failure in a young patient\nNeurologic: tremor, dysarthria, drooling, dystonia, ataxia\nPsychiatric: depression, personality change, poor school/work performance\nKayser-Fleischer ring noted incidentally or on slit-lamp",
+              examination: "Kayser-Fleischer ring — golden-brown corneal rim (slit lamp)\nSunflower cataract (rare)\nHepatosplenomegaly, jaundice, signs of chronic liver disease\nNeurologic: wing-beating tremor, parkinsonism, dystonia, ataxia",
+              investigations: "Low serum ceruloplasmin (supportive, not alone diagnostic)\nGold standard: 24-h urinary copper ELEVATED + hepatic copper >250 µg/g on biopsy\nK-F ring on slit-lamp examination\nGenetic testing (ATP7B) for family screening; serum free copper",
+              management: "Chelation: D-penicillamine or trientine (first line)\nZinc acetate (blocks intestinal absorption) for maintenance and asymptomatic patients\nPyridoxine (B6) with penicillamine; low-copper diet\nUrgent liver transplant for fulminant hepatic failure",
+              differentials: "Other cirrhosis causes (alcohol/viral/autoimmune): normal copper studies\nParkinson disease: later onset, no K-F ring\nMultiple sclerosis: MRI demyelinating lesions, CSF\nAcute viral hepatitis: negative copper panel" }
+,
+            { text: "سرطان الخلايا الكبدية وإصمامه<br><span style='font-size:18px; color:#ccc;'>(HCC - TACE)</span>", cat: 1,
+              imageUrl: "https://user.uploads.dev/file/eebc91db97fe73a955feb72dc3ceb773.jpg",
+              imageLabel: "أشعة مقطعية CT",
+              imageCaption: "رباعي الأطوار: تعزيز شرياني واضح ثم غسيل (Washout) في الوريدي — العلامة التشخيصية للـ HCC.",
+              symptoms: "Deteriorating cirrhosis: right-upper-quadrant pain and weight loss\nPalpable liver mass\nNew or worsening ascites and encephalopathy\nRising AFP during 6-monthly surveillance",
+              examination: "RUQ tenderness; hepatomegaly with a firm, nodular liver\nHepatic bruit (uncommon but suggestive)\nAscites, jaundice, muscle wasting\nSplenomegaly and stigmata of chronic liver disease",
+              investigations: "Gold standard: triphasic CT or MRI — arterial phase enhancement with venous/delayed 'washout'\nAFP (adjunct for surveillance and monitoring)\nBiopsy for lesions not meeting imaging criteria\nStaging: PET-CT, portal vein patency; Child-Pugh/MELD for liver reserve",
+              management: "Very early/early: surgical resection or liver transplant (Milan criteria)\nIntermediate: TACE (chemoembolization) or local ablation (RFA/microwave)\nAdvanced: systemic therapy (atezolizumab + bevacizumab or sorafenib/lenvatinib)\nPalliation + continued surveillance of the remaining liver",
+              differentials: "Hepatic adenoma / FNH: distinct enhancement patterns, NO washout\nMetastatic disease: known primary, multiple lesions\nPyogenic/amebic abscess: fever, rim enhancement\nRegenerating nodule in cirrhosis: no arterial enhancement/washout on follow-up imaging" }
+,
+            { text: "تسلخ الأبهر<br><span style='font-size:18px; color:#ccc;'>(Aortic Dissection)</span>", cat: 1,
+              imageUrl: "https://user.uploads.dev/file/72b1312e67820450290b2dca4ee8caaa.jpg",
+              imageLabel: "أشعة مقطعية CTA",
+              imageCaption: "فلاب داخلي (Intimal flap) + قناتان «Double lumen» في الأبهر النازل.",
+              symptoms: "Sudden, severe 'tearing' or 'ripping' chest/back pain — maximal at onset\nPain migrates along the course of the dissection\nSyncope, dyspnea\nNeurologic or visceral ischemic symptoms (stroke, mesenteric ischemia, limb ischemia)",
+              examination: "Hypertension (or hypotension if tamponade/rupture)\nUnequal blood pressures or pulses between arms\nAortic regurgitation murmur (type A)\nNeurologic deficits; muffled heart sounds, distended neck veins (tamponade)",
+              investigations: "Gold standard: CT angiography of the chest — intimal flap with true/false lumen\nTEE at the bedside if the patient is unstable\nMRI as an alternative (more time-consuming)\nCXR: widened mediastinum (low sensitivity — CANNOT exclude); ECG/troponin to rule out MI",
+              management: "Type A (ascending): emergency open surgical repair\nType B (descending): medical — IV β-blocker FIRST (esmolol/labetalol), then add vasodilators (avoid reflex tachycardia)\nTEVAR for complicated type B (rupture, malperfusion, refractory pain)\nAnalgesia; long-term BP control (β-blocker ± calcium-channel blocker) and serial imaging",
+              differentials: "Acute MI: ECG changes, elevated troponin\nPE: sudden dyspnea, CTPA with filling defect\nRuptured AAA: abdominal/back pain, shock, CT\nAcute pericarditis: positional pain, friction rub\nEsophageal rupture: recent emesis/instrumentation, mediastinal air" }
+,
+            { text: "الانصمام الرئوي<br><span style='font-size:18px; color:#ccc;'>(Pulmonary Embolism)</span>", cat: 1,
+              imageUrl: "https://user.uploads.dev/file/239a6592954047e4f9ec8c70c98b5991.jpg",
+              imageLabel: "أشعة مقطعية CTPA",
+              imageCaption: "خلل امتلاء (Filling defect): جلطة تسد الشريان الرئوي الأيسر الرئيسي بالكامل.",
+              symptoms: "Sudden dyspnea and pleuritic chest pain\nHemoptysis and tachycardia\nSyncope or shock in massive PE\nRisk factors: surgery, immobility, malignancy, pregnancy, oral contraceptives, thrombophilia; leg swelling (DVT)",
+              examination: "Tachypnea, tachycardia, hypoxia\nPleural rub or crackles; low-grade fever\nSigns of DVT: unilateral leg edema, calf tenderness\nMassive PE: hypotension, raised JVP, loud P2, RV heave",
+              investigations: "D-dimer: negative excludes PE in low-probability patients\nGold standard: CTPA showing an intraluminal filling defect\nLeg venous Doppler for DVT; ECG: sinus tachycardia, S1Q3T3 (insensitive)\nEcho: RV strain (McConnell's sign); ABG: hypoxemia",
+              management: "Anticoagulate immediately: LMWH/fondaparinux, then DOAC or warfarin for ≥3 months\nMassive PE with shock: systemic thrombolysis or catheter/surgical embolectomy\nIVC filter if anticoagulation is contraindicated\nPrevention: VTE prophylaxis in hospitalized/high-risk patients; treat underlying cause",
+              differentials: "Acute MI: ECG and troponin changes\nPneumonia: fever, consolidation on CXR\nPneumothorax: absent breath sounds, CXR shows lung edge\nPanic attack/anxiety: no objective abnormalities\nRib fracture/costochondritis: localized tenderness, normal imaging" }
+,
+            { text: "السكتة الدماغية الحادة<br><span style='font-size:18px; color:#ccc;'>(Acute Stroke)</span>", cat: 1,
+              imageUrl: "https://user.uploads.dev/file/28ff64e1f228611c2014f6e3df039ec3.jpg",
+              imageLabel: "رنين مغناطيسي MRI (DWI/ADC)",
+              imageCaption: "احتشاء مشع في DWI ومنخفض في ADC (أسهم) — السكتة الإقفارية الحادة مع تصوير الأوعية (MRA) يبين الانسداد.",
+              symptoms: "Sudden unilateral face/arm/leg weakness or numbness\nSpeech disturbance: aphasia or dysarthria\nSudden visual loss, diplopia, or vertigo with imbalance\nSevere sudden headache; TIME OF ONSET is critical for treatment decisions",
+              examination: "Focal neurologic deficit on examination (FAST screening)\nNeglect, hemianopia, gaze deviation\nAphasia (dominant hemisphere) vs neglect (non-dominant)\nMeasure NIHSS; check glucose, BP, and swallow",
+              investigations: "Urgent non-contrast CT brain — exclude hemorrhage BEFORE thrombolysis\nGold standard for acute ischemia: MRI (DWI hyperintense / ADC hypointense)\nCTA for large-vessel occlusion; CT perfusion for the penumbra\nECG, echo, lipids, HbA1c, glucose for secondary prevention and etiology",
+              management: "IV tPA within 4.5 h of onset (BP <185/110 before, exclude hemorrhage)\nMechanical thrombectomy up to 24 h for large-vessel occlusion\nAntiplatelet (aspirin) after 24 h if no hemorrhage\nPermissive BP in the acute phase; swallow assessment; secondary prevention: statin + BP + antithrombotic by etiology; early rehabilitation",
+              differentials: "Intracerebral hemorrhage: non-contrast CT is decisive\nHypoglycemia: point-of-care glucose FIRST\nBell's palsy: forehead spared, isolated unilateral face\nSeizure with postictal deficit: history of epilepsy\nBrain tumor: gradual or stuttering onset" }
+,
+            { text: "النزف تحت العنكبوتية<br><span style='font-size:18px; color:#ccc;'>(Subarachnoid Hemorrhage)</span>", cat: 1,
+              imageUrl: "https://user.uploads.dev/file/638dcfda6b570bacf3223edf95d5b8e7.jpg",
+              imageLabel: "أشعة مقطعية CT (بدون صبغة)",
+              imageCaption: "دم ناصع البياض (Hyperdense) في الصهاريج القاعدية — النزف تحت العنكبوتية.",
+              symptoms: "Sudden explosive 'thunderclap' headache — worst of life, maximal within seconds\nNausea and vomiting\nNeck stiffness\nSyncope or seizure at onset; risk factors: hypertension, smoking, family history of aneurysm",
+              examination: "Neck stiffness (meningism); photophobia\nAltered GCS\nSubhyaloid (preretinal) hemorrhage on fundoscopy\nFocal deficits, low-grade fever; papilledema if raised ICP",
+              investigations: "Gold standard first step: non-contrast CT brain within 6 h (very high sensitivity)\nIf CT negative: lumbar puncture for XANTHOCHROMIA (not simply blood)\nCT angiography or DSA to identify the aneurysm\nECG (QT prolongation, T-wave changes); serial GCS",
+              management: "ICU care; airway protection if GCS low\nNimodipine (oral) to reduce vasospasm / delayed cerebral ischemia\nSecure the aneurysm EARLY: coiling or clipping within 24-72 h\nAnalgesia, BP control, monitor for hydrocephalus (EVD) and rebleeding",
+              differentials: "Cervical artery dissection: preceding neck pain/trauma, imaging shows stenosis\nBacterial meningitis: fever + positive CSF cultures\nBrain tumor: gradual onset\nMigraine: recurrent, no meningism\nHypertensive encephalopathy: very high BP with distinctive MRI findings" }
+,
+            { text: "مرض الشرايين المحيطية<br><span style='font-size:18px; color:#ccc;'>(Peripheral Artery Disease)</span>", cat: 1,
+              imageUrl: "https://user.uploads.dev/file/3e0ebf55088c2fc7fe9594d0ca27bb3e.jpg",
+              imageLabel: "تصوير وعائي (Angiography)",
+              imageCaption: "تكلسات شريانية متوضعة (Monckeberg) ممتدة — مرض الشرايين المحيطية عند مريض سكري.",
+              symptoms: "Intermittent claudication: reproducible calf pain on walking, relieved by rest within minutes\nRest pain (forefoot) in critical limb ischemia — worse at night, eased by hanging the leg down\nNon-healing ulcers, especially toes/heels\nRisk factors: smoking, diabetes, hyperlipidemia, age, family history",
+              examination: "Diminished or absent distal pulses; cool, pale extremity\nHair loss, shiny atrophic skin, dystrophic nails\nArterial bruits (femoral/popliteal)\nPallor on elevation, dependent rubor; ulcer/gangrene on toes",
+              investigations: "Gold standard screening: ABI <0.9 (and >1.3 suggests calcified vessels — use toe-brachial index)\nDuplex ultrasound for lesion localization\nCT or MR angiography for intervention planning\nFasting glucose, HbA1c, lipids, BP for risk-factor control",
+              management: "Smoking cessation + glycemic control + statin + antiplatelet (aspirin/clopidogrel)\nSupervised exercise program (improves collateral flow)\nRevascularization — angioplasty/stenting or bypass — for claudication limiting life or critical ischemia\nWound care; amputation if limb is unsalvageable",
+              differentials: "Diabetic neuropathy: burning pain, normal pulses\nLumbar radiculopathy: back pain with neurologic signs\nDVT: unilateral swelling, not claudication\nMusculoskeletal pain: not distance-related\nChronic venous insufficiency: edema, varicosities, pigmentation" }
+,
+            { text: "متلازمة الحيز<br><span style='font-size:18px; color:#ccc;'>(Compartment Syndrome)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/7bb47225e74338c04ca0d14fe1d1d78e.jpg",
+              imageLabel: "صورة سريرية (Clinical)",
+              imageCaption: "التشخيص سريري لا شعاعي — الورم الشديد والتقرحات (Blistering) علامات متأخرة تستدعي فتح الحيز (Fasciotomy).",
+              symptoms: "Severe pain OUT OF PROPORTION to the injury\nPain worsened by passive stretch of the involved muscles\nParesthesia and then weakness\nCommon after fractures, crush injuries, prolonged limb compression, or post-op swelling",
+              examination: "Tense, swollen, woody-feeling compartment\nPain on passive stretch — earliest reliable sign\nSensory loss follows (late)\nDecreased pulse/capillary refill are LATE signs — do NOT wait for them",
+              investigations: "Gold standard: clinical diagnosis — never delay treatment for imaging\nCompartment pressure >30 mmHg (or delta <30 mmHg from diastolic BP) supports the diagnosis\nSerial pressure monitoring and neurovascular checks\nRarely Doppler/nerve conduction needed",
+              management: "Emergency: remove ALL external compression (casts, splints, dressings)\nPosition the limb at heart level (not above, not below)\nDefinitive: immediate fasciotomy — irreversible damage begins at 4-6 hours\nTreat the cause (bleeding, edema, burns) and reassess after decompression",
+              differentials: "Simple fracture/contusion: pain proportional to injury\nPeripheral nerve injury: weakness without a tense compartment\nDVT: swelling with Doppler evidence\nCompressive hematoma: imaging\nEarly post-op swelling: monitor response to elevation/ice" }
+,
+            { text: "الساركوما العظمية<br><span style='font-size:18px; color:#ccc;'>(Osteosarcoma)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/027655708a72017dae4a626e16cf71ea.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "«تأثير أشعة الشمس» (Sunburst) — تفاعل سمحاقي + كتلة نسيجية في ميتافيز القصبة.",
+              symptoms: "Progressive bone pain and swelling — classically distal femur / proximal tibia\nPalpable firm mass, sometimes warm\nNight pain that wakes the patient\nPathologic fracture; typical age 10-25 years",
+              examination: "Palpable firm, tender bony mass\nJoint effusion and reduced range of motion if periarticular\nOverlying warmth; dilated veins (late)\nSigns of pulmonary metastasis later (dyspnea)",
+              investigations: "XR: 'sunburst' (hair-on-end) periosteal reaction, Codman triangle, soft-tissue mass\nGold standard: core needle biopsy — histology + molecular studies\nMRI for intramedullary and soft-tissue extent\nCT chest for lung metastases; ALP may be elevated",
+              management: "Neoadjuvant chemotherapy (methotrexate, doxorubicin, cisplatin) BEFORE surgery\nWide surgical resection with limb salvage — or amputation — then adjuvant chemotherapy\nRadiotherapy if margins are involved or unresectable\nLong-term surveillance, especially pulmonary metastases",
+              differentials: "Ewing sarcoma: similar presentation — different treatment, biopsy is essential\nSimple/aneurysmal bone cyst: benign, typical imaging\nOsteomyelitis: fever, positive cultures\nOsteoid osteoma: night pain dramatically relieved by NSAIDs\nStress fracture: overuse history, no mass" }
+,
+            { text: "كسر عنق الفخذ<br><span style='font-size:18px; color:#ccc;'>(Femoral Neck Fracture)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/d0b987f0b8822ae4b7ddcae193c84fee.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "كسر عنق الفخذ الأوسط (Intracapsular) — الخط الأحمر يحدّد خط الكسر.",
+              symptoms: "Elderly patient falls onto the hip: severe groin/hip pain\nInability to bear weight\nShortened, externally rotated leg\nAn undisplaced fracture may still allow walking — never be falsely reassured",
+              examination: "Leg shortened and externally rotated\nPain on axial loading or gentle hip rotation\nTenderness in the groin; bruising appears late\nCompare limb lengths and check neurovascular status",
+              investigations: "Gold standard: AP and lateral hip XR (may be normal initially)\nIf negative with high suspicion: MRI detects occult fracture (or CT)\nPre-op workup: ECG, CBC, electrolytes, renal function, CXR\nCT for associated acetabular injury or if MRI unavailable",
+              management: "Undisplaced or younger patients: internal fixation (cannulated screws)\nDisplaced in the elderly: hemiarthroplasty\nEarly surgery (within 24-48 h) reduces morbidity and mortality\nEarly mobilization, analgesia, DVT prophylaxis (aspirin/LMWH), falls prevention",
+              differentials: "Hip dislocation: leg internally rotated (flexed/adducted)\nPelvic fracture: pelvic tenderness, different mechanism\nAvascular necrosis: gradual pain without trauma\nPathologic fracture/metastasis: visible lesion on XR\nIntertrochanteric fracture: different fracture line on XR" }
+,
+            { text: "النخر اللاوعائي لرأس الفخذ<br><span style='font-size:18px; color:#ccc;'>(Avascular Necrosis)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/97efe8a47c049896a92f73b71bbc49c6.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "الرأس الفخذي متصلّب ومنخفض + علامة الهلال (Crescent sign) — عظم ميت في قمة الرأس.",
+              symptoms: "Gradual hip or knee pain that worsens with weight bearing\nLimp and reduced range of movement\nRisk factors: corticosteroids, alcohol, trauma, sickle cell disease, SLE\nEventually collapse → arthritis-like pain",
+              examination: "Pain and reduced internal rotation of the hip\nAntalgic gait; groin tenderness\nMuscle wasting around the hip\nLater: leg-length discrepancy and fixed deformity",
+              investigations: "Gold standard (earliest): MRI — 'double-line sign' at the subchondral region\nXR: initially normal → sclerosis → crescent sign → subchondral collapse\nFicat/ARCO staging to guide management\nSerial imaging to monitor progression",
+              management: "Decrease weight bearing (crutches) in early disease\nJoint-preserving procedures: core decompression ± bone grafting\nBisphosphonates in selected cases\nTotal hip arthroplasty once collapse/advanced OA occurs; treat the underlying cause",
+              differentials: "Hip osteoarthritis: joint-space narrowing + osteophytes, no crescent sign\nFemoral neck fracture: clear trauma history\nPaget disease: bone enlargement with high ALP\nMetastatic disease: multiple lesions\nReferred back pain: normal hip on exam/imaging" }
+,
+            { text: "كسر العظم الزورقي<br><span style='font-size:18px; color:#ccc;'>(Scaphoid Fracture)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/49fc77a7e35660b4782dea2ba48ade9d.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "كسر العظم الزورقي (Scaphoid) مبيّن بالسهم — نتيجة السقوط على اليد الممدودة.",
+              symptoms: "Fall onto an outstretched hand (FOOSH)\nPain in the anatomical snuffbox\nPain on axial loading of the thumb and on grip\nProximal pole at high risk of AVN due to retrograde blood supply",
+              examination: "Tenderness in the anatomical snuffbox\nScaphoid tubercle tenderness\nPain on axial compression of the thumb\nReduced grip strength; minimal swelling",
+              investigations: "Gold standard initial: scaphoid-series XR (AP, lateral, oblique ± ulnar deviation)\nIf negative with strong suspicion: MRI detects occult fracture\nAlternative: short-arm cast then repeat XR at 10-14 days\nCT for surgical planning or suspected nonunion",
+              management: "Undisplaced: short-arm (scaphoid) cast for 6-12 weeks\nDisplaced or nonunion: percutaneous screw fixation ± bone grafting\nSerial XR to confirm union\nManage AVN if it develops (grafting, salvage procedures)",
+              differentials: "Distal radius fracture: wrist pain with different tenderness/XR\nLigament sprain: pain with movement, not bone pressure\nLunate fracture: central wrist tenderness (risk of Kienböck disease)\nDe Quervain tenosynovitis: pain with thumb motion, negative snuffbox" }
+,
+            { text: "خلع الورك الخلفي<br><span style='font-size:18px; color:#ccc;'>(Posterior Hip Dislocation)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/93a5ad5d9213bd9cc8ab2371fe889061.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "رأس الفخذ خارج الحُق نحو الخلف — الخلع الخلفي للورك (Posterior dislocation).",
+              symptoms: "High-energy trauma: motor vehicle crash or fall from height\nSevere hip pain with inability to move\nAssociated injuries (knee, acetabulum, head/chest)\nRisk of sciatic nerve injury",
+              examination: "Hip held flexed, adducted, internally rotated (shortened)\nPainful, immobile joint\nNeurovascular exam essential: sciatic/peroneal function, distal pulses\nAssess for associated multisystem trauma",
+              investigations: "Gold standard: AP + lateral hip XR — femoral head displaced out of the acetabulum\nPost-reduction CT for intra-articular fragments and associated acetabular fracture\nDocument neurologic status before/after reduction\nLook for ipsilateral knee injury",
+              management: "URGENT closed reduction under sedation/anesthesia — within hours of injury\nPost-reduction CT to confirm congruency\nSkeletal traction or open reduction if unstable/incarcerated fragment\nPhysiotherapy; monitor for AVN and post-traumatic osteoarthritis",
+              differentials: "Femoral neck fracture: leg externally rotated\nPelvic fracture: pelvic tenderness, imaging findings\nAnterior dislocation: leg abducted and externally rotated\nAcetabular fracture without dislocation: CT\nHip septic arthritis: fever, acute pain, aspirate" }
+,
+            { text: "الفصال العظمي للركبة<br><span style='font-size:18px; color:#ccc;'>(Knee Osteoarthritis)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/65c770180687d4ad47bddcb1ad18bae1.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "تضيق الحيّز المفصلي الإنسي (Medial joint space narrowing) + نابتات عظمية (Osteophytes) — الفصال العظمي.",
+              symptoms: "Activity-related knee pain (worse with stairs/weight bearing)\nMorning stiffness under 30 minutes\nCrepitus and grating sensation\nSwelling after activity; pain relieved by rest; age >50, obesity, prior injury",
+              examination: "Crepitus on passive motion\nReduced range of movement\nSmall effusion; bony tenderness/osteophytes at the joint line\nVarus deformity (medial compartment disease); minimal warmth",
+              investigations: "Clinical diagnosis is usually sufficient\nGold standard imaging: standing weight-bearing XR — medial joint-space narrowing, subchondral sclerosis, osteophytes\nMRI if meniscal/ligament injury suspected\nRule out gout/pseudogout if acute severe swelling (aspirate)",
+              management: "First line: weight loss, exercise, physiotherapy, paracetamol\nTopical or short-course oral NSAIDs\nIntra-articular corticosteroids or hyaluronic acid\nTotal knee arthroplasty for advanced disease; assistive devices and patient education",
+              differentials: "Rheumatoid arthritis: prolonged stiffness, symmetric small-joint disease, positive serology\nGout/pseudogout: acute hot swelling, crystals on aspirate\nMeniscal/ligament tear: twist injury, mechanical symptoms\nReferred hip/back pain: normal knee exam\nSeptic arthritis: acute, hot, exquisitely painful — URGENT aspirate" }
+,
+            { text: "التهاب المفاصل الروماتويدي<br><span style='font-size:18px; color:#ccc;'>(Rheumatoid Arthritis)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/8b6c31adefc5ad6377be0840ec1cfcd9.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "التهاب مفصلي متعدد يشمل اليدين مع تصلب مفصلي (Ankylosis) — التهاب المفاصل الروماتويدي.",
+              symptoms: "Symmetric polyarthritis of small joints: MCP, PIP, wrists, MTP\nMorning stiffness lasting >30 minutes\nFatigue, malaise, weight loss\nDuration >6 weeks; rheumatoid nodules",
+              examination: "Swollen, tender, warm MCP/PIP/wrists — bilateral and symmetric\nUlnar deviation, swan-neck and boutonnière deformities (late)\nRheumatoid nodules over extensor surfaces\nExtra-articular: sicca (dry eyes), pulmonary involvement, anemia",
+              investigations: "Gold standard serology: RF + anti-CCP (anti-CCP highly specific)\nESR and CRP for activity; CBC for anemia\nXR hands/feet: periarticular erosions, joint-space loss, then ankylosis\nUS/MRI for early synovitis if XR normal",
+              management: "Early DMARD: methotrexate first-line\nShort-term steroids + NSAIDs for bridging\nAdd biologics (anti-TNF and others) if inadequate response\nPhysiotherapy, joint protection; screen for CVD, interstitial lung disease, osteoporosis",
+              differentials: "Osteoarthritis: no prolonged stiffness, large joints\nGout/pseudogout: acute monoarthritis\nSLE: photosensitivity, rash, renal disease, ANA\nPsoriatic arthritis: DIP joints, nail/skin psoriasis\nPolymyalgia rheumatica: elderly, girdle stiffness, very high ESR" }
+,
+            { text: "التهاب الفقار المقسط<br><span style='font-size:18px; color:#ccc;'>(Ankylosing Spondylitis)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/745c04fc14f684a42e6bb2b1b18b8516.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "«العمود الفقري الخيزراني» (Bamboo spine) — جسور عظمية بين الفقرات في التهاب الفقار المقسط.",
+              symptoms: "Inflammatory back pain: onset <40 years, insidious, >30 min morning stiffness\nPain IMPROVES with exercise, worsens with rest — wakes at night\nButtock pain (sacroiliitis) alternating sides\nUveitis, enthesitis (Achilles), family history; HLA-B27",
+              examination: "Reduced spinal mobility (positive Schober test)\nTenderness over the sacroiliac joints\nLimited chest expansion\nLate: kyphosis, 'question-mark' posture; peripheral arthritis, Achilles enthesitis",
+              investigations: "Gold standard: pelvic XR — sacroiliitis (sclerosis, erosions, ankylosis)\nMRI of SI joints detects early/active disease\nSpine XR: 'bamboo spine' (syndesmophytes) in late disease\nHLA-B27 (supportive only), ESR/CRP",
+              management: "Cornerstone: regular exercise and posture training\nContinuous NSAIDs (indomethacin highly effective)\nAnti-TNF biologics for active disease failing NSAIDs\nTreat uveitis; screen for and treat osteoporosis; monitor (rare) aortic regurgitation",
+              differentials: "Mechanical low back pain: worse with activity, better with rest\nLumbar disc disease: radicular symptoms\nCrohn's-related spondyloarthropathy: GI symptoms\nFibromyalgia: widespread tender points, normal XR\nSpinal osteoarthritis: older age, no SI joint involvement" }
+,
+            { text: "داء باجيت العظمي<br><span style='font-size:18px; color:#ccc;'>(Paget Disease of Bone)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/8646ecb58d6fbe4806e7c01bd382e1c8.jpg",
+              imageLabel: "أشعة X-Ray",
+              imageCaption: "عظم صدغي متضخم ذو بنية مشوهة (A) مقابل الطبيعي (B) — داء باجيت العظمي.",
+              symptoms: "Deep, aching bone pain — often pelvis, femur, tibia, skull\nBone deformity: enlarged skull, bowing of long bones\nWarmth over the affected bone (increased vascularity)\nPathologic fractures; nerve compression (hearing loss, facial pain) in older adults",
+              examination: "Enlarged, warm, deformed bones\nBowed tibia; skull enlargement (hat size increases)\nSigns of nerve compression: sensorineural deafness, facial palsy\nHigh-output cardiac failure in extensive disease (rare)",
+              investigations: "Gold standard: XR — enlarged bone with coarse, disorganized 'cotton-wool' trabeculae\nAlkaline phosphatase markedly elevated with normal calcium/phosphate\nBone scan (Tc-99m): intense focal uptake\nCT/MRI for complications (sarcoma, fracture, cord compression)",
+              management: "Bisphosphonates (zoledronate/alendronate) for pain, active disease, or high-risk sites\nCalcium + vitamin D supplementation\nSurgery for fractures, deformity, or nerve decompression\nAnnual ALP monitoring; watch for the rare Paget's sarcoma",
+              differentials: "Bone metastases: multiple lesions, night pain, known primary\nOsteoarthritis: no bone-enlargement pattern\nHyperparathyroidism: hypercalcemia, skeletal survey differences\nOsteomalacia: low vitamin D/calcium, Looser zones\nFibrous dysplasia: young age, 'ground-glass' XR" }
+,
+            { text: "متلازمة ذنب الفرس<br><span style='font-size:18px; color:#ccc;'>(Cauda Equina Syndrome)</span>", cat: 2,
+              imageUrl: "https://user.uploads.dev/file/2d1208a76376f3a8d02b41e237db8cdf.jpg",
+              imageLabel: "رنين مغناطيسي MRI",
+              imageCaption: "خراج فوق الجافية (Epidural abscess) يضغط على ذنب الفرس — حالة طارئة جراحية.",
+              symptoms: "Severe low back pain with radicular (sciatica-type) leg pain\nSADDLE anesthesia: numbness in the perineum/genitals\nUrinary retention or incontinence; bowel incontinence\nBilateral leg weakness and numbness of recent onset — SURGICAL EMERGENCY",
+              examination: "Saddle/perianal sensory loss\nReduced anal sphincter tone; absent bulbocavernosus reflex\nMultidermatomal bilateral lower-limb weakness\nDecreased knee/ankle reflexes; palpable distended bladder",
+              investigations: "Gold standard: URGENT lumbosacral MRI (disc herniation, tumor, epidural abscess)\nCT myelogram if MRI contraindicated\nBladder ultrasound for post-void residual\nIf abscess suspected: CBC, ESR/CRP, blood cultures",
+              management: "Emergency decompressive surgery within 24-48 hours (earlier = better outcomes)\nBroad-spectrum antibiotics + source control for epidural abscess\nBladder catheterization; early rehabilitation\nMonitor recovery of bladder/bowel and leg function",
+              differentials: "Simple lumbar disc herniation: radicular pain WITHOUT sphincter/saddle involvement\nPeripheral neuropathy: stocking-glove distribution\nLumbar spinal stenosis: neurogenic claudication relieved by flexion\nSpinal metastasis: known cancer, MRI lesion\nTransverse myelitis: sensory level, CSF" }
+,
+            { text: "رباعية فالو<br><span style='font-size:18px; color:#ccc;'>(Tetralogy of Fallot)</span>", cat: 3,
+              imageUrl: "https://user.uploads.dev/file/aebd1b9d6d5e41e33d3a881afbabbb37.jpg",
+              imageLabel: "صورة سريرية (Clubbing)",
+              imageCaption: "زرقة وتقعّر الأظافر (Clubbing & Cyanosis) — أهم علامة سريرية في رباعية فالو (قلب «Cœur en sabot» في الشعاعية).",
+              symptoms: "Cyanosis with crying or feeding in infancy\nTet spells: sudden hypercyanotic episodes — irritability, deep rapid breathing, limpness\nPoor feeding, failure to thrive\nClubbing and squatting (older children)",
+              examination: "Central cyanosis with clubbing\nRV heave; single loud S2\nSystolic ejection murmur of pulmonary stenosis — may DECREASE during a spell\nThrill at the left sternal border; normal or soft murmur when severely cyanotic",
+              investigations: "Gold standard: echocardiography — VSD, pulmonary stenosis, overriding aorta, RV hypertrophy\nECG: right axis deviation, RVH\nCXR: boot-shaped heart (cœur en sabot), decreased pulmonary vascularity\nPulse oximetry; cardiac catheterization if details needed",
+              management: "Prevention of spells: hydration, avoid crying/dehydration, propranolol\nAcute Tet spell: knee-chest position, oxygen, IV morphine, fluid bolus, sodium bicarbonate, phenylephrine if refractory\nDefinitive: complete surgical repair in infancy\nLong-term cardiology follow-up (residual PS, arrhythmia, exercise)",
+              differentials: "Other cyanotic congenital lesions: transposition of great arteries, truncus arteriosus — echo differentiates\nNeonatal pulmonary disease: CXR, respiratory signs\nNeonatal sepsis: cultures\nHypoglycemia: point-of-care glucose\nTOF with pulmonary atresia: severe duct-dependent cyanosis" }
+,
+            { text: "التليف الكيسي<br><span style='font-size:18px; color:#ccc;'>(Cystic Fibrosis)</span>", cat: 3,
+              imageUrl: "https://user.uploads.dev/file/ad2edaa2ca64fc79a04dbf746fd954bc.jpg",
+              imageLabel: "أشعة صدر (X-Ray)",
+              imageCaption: "فرط انتفاخ الرئتين + توسّع القصبات (Bronchiectasis) وحلقات ظلال (Ring shadows).",
+              symptoms: "Neonatal meconium ileus (presenting feature)\nSalty-tasting skin (classic)\nPersistent cough, recurrent pneumonia, chronic sinusitis\nGreasy, foul-smelling stools (steatorrhea), failure to thrive; male infertility",
+              examination: "Wasted, malnourished child; digital clubbing\nHyperinflated chest, crackles/wheeze\nAbdominal distension; nasal polyps\nHepatosplenomegaly (advanced); signs of cor pulmonale (late)",
+              investigations: "Gold standard: sweat chloride >60 mmol/L (on two occasions)\nCFTR genetic testing; nasal potential difference\nSpirometry, CXR (bronchiectasis, hyperinflation), sputum culture (Staph, Pseudomonas)\nFecal elastase (pancreatic insufficiency)",
+              management: "Daily chest physiotherapy and airway clearance\nPancreatic enzyme replacement with every meal\nFat-soluble vitamins (A, D, E, K) + high-calorie diet\nAntibiotics for infections; ursodeoxycholic acid; CFTR modulators (ivacaftor/lumacaftor) by genotype; lung transplant in end-stage disease",
+              differentials: "Recurrent pneumonia/asthma: normal sweat chloride\nCeliac disease: positive anti-tTG\nOther causes of malabsorption: normal CF investigations\nPrimary ciliary dyskinesia: ciliary ultrastructure on electron microscopy\nImmunodeficiency: immunoglobulin levels" }
+,
+            { text: "انغلاف معوي<br><span style='font-size:18px; color:#ccc;'>(Intussusception)</span>", cat: 3,
+              imageUrl: "https://user.uploads.dev/file/97010345d177b01da1b29db547784291.jpg",
+              imageLabel: "إيكو بطن (US)",
+              imageCaption: "«العلامة المستهدفة» (Target sign) — الانغلاف المعوي في المقطع العرضي.",
+              symptoms: "Previously healthy infant (3-36 months) with sudden, paroxysmal abdominal pain\nDrawing legs up and inconsolable crying; vomiting\n'Red currant jelly' stools\nLethargy between attacks",
+              examination: "Pallor and lethargy between episodes\nSausage-shaped mass in the RUQ; empty RLQ (Dance sign)\nAbdominal tenderness/distension\nBlood on rectal examination; signs of dehydration",
+              investigations: "Gold standard: ultrasound — 'target/doughnut' sign (transverse) or 'pseudokidney' (longitudinal)\nAir or contrast enema is both diagnostic and therapeutic\nPlain AXR: soft-tissue mass, paucity of gas\nCBC if complications (perforation, ischemia) suspected",
+              management: "Non-operative: air (or barium/water-soluble contrast) enema reduction if no peritonitis/perforation\nSurgery (manual reduction ± resection) if enema fails, peritonitis, perforation, or a lead point is suspected\nObserve 24-48 h for recurrence\nTreat the lead point (Meckel diverticulum, polyp, tumor)",
+              differentials: "Colic/gas: no currant-jelly stools, resolves spontaneously\nGastroenteritis: diarrhea, no mass\nMalrotation/volvulus: bilious vomiting, acute abdomen — URGENT\nAppendicitis: RLQ tenderness, fever, older child\nConstipation: history, no paroxysmal pain" }
+,
+            { text: "تضيق البواب الضخامي<br><span style='font-size:18px; color:#ccc;'>(Hypertrophic Pyloric Stenosis)</span>", cat: 3,
+              imageUrl: "https://user.uploads.dev/file/5b6e7515bfefefe61410b48f33cc094d.jpg",
+              imageLabel: "إيكو بطن (US)",
+              imageCaption: "عضل بوابي سميك وطويل (Pyloric muscle) — تضيق البواب الضخامي عند الرضع.",
+              symptoms: "Infant 2-8 weeks old (male predominance) with PROJECTILE, non-bilious vomiting after feeds\nConstant hunger — eagerly feeds again\nPoor weight gain; constipation, fewer stools\nDehydration",
+              examination: "Palpable 'olive' mass in the epigastrium (best felt after a feed, with the baby relaxed)\nVisible gastric peristaltic waves moving left-to-right across the abdomen\nSigns of dehydration: sunken fontanelle, decreased turgor, lethargy\nMetabolic alkalosis on assessment",
+              investigations: "Gold standard: ultrasound — pyloric muscle thickness >3-4 mm, length >15-16 mm\nABG: hypochloremic, hypokalemic metabolic alkalosis; electrolytes\nUpper GI series if US equivocal: 'string sign' or 'shoulder sign'\nBladder scan not needed; monitor urine output",
+              management: "Correct dehydration and electrolytes FIRST — IV normal saline + KCl (never K+ before adequate urine output)\nThen surgical pyloromyotomy (Ramstedt) — laparoscopic or open\nAdvance feeds gradually post-operatively\nMonitor electrolytes and weight gain",
+              differentials: "GERD: regurgitation is non-projectile, normal electrolytes\nInfantile UTI: fever, abnormal urinalysis\nMetabolic causes (hypoglycemia, ketotic vomiting): labs\nPylorospasm: US is normal\nIntestinal obstruction (malrotation): bilious vomiting, AXR" }
+,
+            { text: "مرض كاواساكي<br><span style='font-size:18px; color:#ccc;'>(Kawasaki Disease)</span>", cat: 3,
+              imageUrl: "https://user.uploads.dev/file/f8e912d75f2549e460a8925c2c79adb7.jpg",
+              imageLabel: "صورة سريرية (Clinical)",
+              imageCaption: "«لسان الفراولة» (Strawberry tongue) — أحد المعايير السريرية لمرض كاواساكي.",
+              symptoms: "Fever >5 days PLUS at least 4 of 5: bilateral non-purulent conjunctivitis\nPolymorphous rash\nOral changes: strawberry tongue, cracked lips, pharyngeal erythema\nExtremity changes: erythema/edema then periungual desquamation; cervical lymphadenopathy >1.5 cm — risk of coronary aneurysm",
+              examination: "High fever; conjunctival injection sparing the limbus\nStrawberry tongue, erythematous cracked lips\nErythematous palms/soles with edema\nLater: desquamation of fingertips; cervical lymphadenopathy; tachycardia/murmur (myocarditis)",
+              investigations: "Clinical criteria make the diagnosis\nGold standard for complications: echocardiography at diagnosis and follow-up — coronary dilation/aneurysm\nCBC: anemia then thrombocytosis (2nd-3rd week); ESR/CRP markedly elevated\nSterile pyuria; ECG (arrhythmia/ischemia)",
+              management: "IVIG within 10 days of fever — reduces coronary aneurysm risk to <5%\nHigh-dose aspirin in the acute phase (anti-inflammatory)\nRefractory disease: corticosteroids or infliximab\nLow-dose aspirin if coronary involvement until resolution; serial echo; defer measles/varicella vaccines while on high-dose aspirin (Reye risk)",
+              differentials: "Scarlet fever: group A streptococcus — throat culture positive\nMeasles: cough/coryza/conjunctivitis + Koplik spots\nRoseola infantum: rash after fever defervesces\nDrug hypersensitivity: temporal drug association\nSepsis: positive cultures, no Kawasaki criteria" }
+,
+            { text: "الحصبة<br><span style='font-size:18px; color:#ccc;'>(Measles)</span>", cat: 3,
+              imageUrl: "https://user.uploads.dev/file/8f67cc43e7ce5c6526beda02b2b95952.jpg",
+              imageLabel: "صورة سريرية (Clinical)",
+              imageCaption: "بقع كوبليك (Koplik spots) على الغشاء المخاطي للخد — العلامة المميزة للحصبة.",
+              symptoms: "Prodrome: fever, cough, coryza and conjunctivitis (the '3 Cs')\nKoplik spots on the buccal mucosa BEFORE the rash\nErythematous maculopapular rash starting behind the ears/face, spreading caudally\nUnvaccinated child or known exposure",
+              examination: "Fever; Koplik spots — white grains on an erythematous buccal base (pathognomonic)\nMaculopapular confluent rash: face → trunk → extremities\nCervical/occipital lymphadenopathy; conjunctivitis\nComplications: otitis media, pneumonia; later SSPE (rare)",
+              investigations: "Clinical diagnosis during outbreaks\nGold standard confirmation: measles IgM serology or PCR (throat swab/urine)\nCBC: leukopenia\nCXR/CSF if pulmonary or neurologic complications suspected",
+              management: "Supportive: fluids, antipyretics, rest\nGold standard intervention: vitamin A — reduces morbidity and mortality\nRespiratory isolation (droplet precautions)\nPrevention: MMR vaccine (and post-exposure within 72 h); treat secondary bacterial otitis/pneumonia",
+              differentials: "Scarlet fever: sandpaper rash, strawberry tongue, positive strep test\nRoseola: rash appears AFTER fever defervesces\nRubella: milder, posterior auricular nodes, no Koplik\nDrug eruption: temporal drug history\nOther viral exanthems: serology" }
+,
+            { text: "التهاب الزائدة الدودية الحاد<br><span style='font-size:18px; color:#ccc;'>(Acute Appendicitis)</span>", cat: 4,
+              imageUrl: "https://user.uploads.dev/file/d8f33898f9f19e1b0d55cb75af74d457.jpg",
+              imageLabel: "أشعة مقطعية CT",
+              imageCaption: "زائدة متوسّعة سميكة الجدار + التهابات الدهون حولها (Fat stranding) — السهم يشير للزائدة.",
+              symptoms: "Periumbilical pain that migrates to the right lower quadrant over 12-24 h\nAnorexia, nausea and vomiting\nLow-grade fever; pain worse with movement, cough or jolting\nClassic presentation in young adults; atypical in children, elderly, pregnancy",
+              examination: "RLQ tenderness at McBurney point\nRovsing sign: RLQ pain on left lower quadrant palpation\nPsoas sign (retrocecal) and obturator sign (pelvic) appendicitis\nGuarding/rebound if peritonitis; fever, tachycardia",
+              investigations: "Clinical scoring (Alvarado/PAS) guides management\nGold standard imaging: ultrasound — appendix >6 mm, non-compressible, periappendiceal fluid\nCT (higher sensitivity) if ultrasound equivocal or negative with strong suspicion\nCBC (neutrophilia), CRP, urinalysis; pregnancy test in women",
+              management: "Appendectomy (laparoscopic) with pre-operative antibiotics\nSelected uncomplicated cases: antibiotics alone (increasingly accepted)\nComplications: periappendiceal abscess — CT-guided drainage or interval appendectomy\nAnalgesia; early mobilization; monitor for wound infection/ileus",
+              differentials: "Mesenteric adenitis: viral prodrome, children, ultrasound nodes\nCrohn's disease: chronic, perianal disease, skip lesions\nRenal colic: flank pain radiating to groin, hematuria\nOvarian cyst/ectopic pregnancy: pelvic US + β-hCG\nIntussusception: infant, currant-jelly stools" }
+,
+            { text: "انسداد الأمعاء<br><span style='font-size:18px; color:#ccc;'>(Bowel Obstruction)</span>", cat: 4,
+              imageUrl: "https://user.uploads.dev/file/f1350c846abef894a8e41e80de0aee5c.jpg",
+              imageLabel: "أشعة بطن (X-Ray)",
+              imageCaption: "حلقات معوية متوسعة مع مستويات سائلة-هوائية (Air-fluid levels) — أشعة بطن واقفاً.",
+              symptoms: "Colicky abdominal pain — crampy, wave-like\nVomiting: early in proximal obstruction, late and fecal in distal\nAbdominal distension (more prominent in distal/colonic obstruction)\nAbsolute constipation: no flatus or stool — previous surgery (adhesions), hernia, or malignancy history",
+              examination: "Distended, tympanitic abdomen; visible peristalsis\nHigh-pitched 'tinkling' bowel sounds (or silent if ileus/ischemia)\nExamine hernial orifices and scars; scrotum\nTenderness/guarding + fever = strangulation; dehydration and tachycardia",
+              investigations: "Gold standard: erect AXR — dilated loops with air-fluid levels ('step-ladder'), absent distal gas\nCT abdomen/pelvis with contrast (cause, closed-loop, ischemia, transition point)\nCBC, electrolytes, lactate, LFTs\nUS for hernia/abscess; NG tube aspirate (feculent = distal)",
+              management: "NPO + NG tube decompression + aggressive IV fluids/electrolyte correction\nSigns of strangulation (fever, leukocytosis, raised lactate, peritonitis) → emergency laparotomy\nAdhesional partial obstruction may settle conservatively\nSurgery for hernia, complete obstruction, or neoplasm; correct dehydration before OR",
+              differentials: "Gastroenteritis: diarrhea, no distension, self-limiting\nIntussusception: infant with currant-jelly stools\nColonic pseudo-obstruction (Ogilvie): massively dilated colon without mechanical cause on CT\nMesenteric ischemia: pain out of proportion, high lactate, AF history\nSevere constipation/impaction: history, rectal exam" }
+,
+            { text: "ثقب القرحة الهضمية<br><span style='font-size:18px; color:#ccc;'>(Perforated Peptic Ulcer)</span>", cat: 4,
+              imageUrl: "https://user.uploads.dev/file/0f4574c08791577fa2fc41cd29beae77.jpg",
+              imageLabel: "أشعة صدر (X-Ray)",
+              imageCaption: "هواء حر تحت الحجاب الحاجز (Free air under diaphragm) — دليل ثقب العضو المجوف.",
+              symptoms: "Sudden, severe epigastric pain described as a 'stab' or 'knife-thrust'\nPain becomes generalized throughout the abdomen\nRigid abdomen; collapse and shock\nNSAID use, smoking, H. pylori, prior ulcer disease; shoulder-tip pain (diaphragmatic irritation)",
+              examination: "Board-like abdominal rigidity — generalized\nDiffuse tenderness, guarding and rebound (peritonitis)\nReduced or absent bowel sounds\nTachycardia and hypotension; fever develops with time",
+              investigations: "Gold standard: erect CXR (or lateral decubitus) showing free air under the diaphragm\nCT abdomen — more sensitive for free air, fluid and abscess\nCBC, electrolytes, ABG, lactate for resuscitation\nECG/troponin to exclude MI; H. pylori testing later",
+              management: "Resuscitate: NPO, NG tube, IV fluids, broad-spectrum antibiotics, IV PPI\nDefinitive: surgery — Graham patch (omental plug) repair, open or laparoscopic\nSelected stable patients: non-operative management with NPO + NG + antibiotics (controversial)\nLater: eradicate H. pylori, stop NSAIDs, PPI maintenance",
+              differentials: "Acute pancreatitis: lipase >3x ULN, no free air\nAcute cholecystitis: RUQ pain + Murphy sign + US\nRuptured AAA: back/flank pain, pulsatile mass, CT\nMyocardial infarction: ECG/troponin\nIntestinal obstruction: dilated loops and air-fluid levels" }
+,
+            { text: "التهاب المرارة الحاد<br><span style='font-size:18px; color:#ccc;'>(Acute Cholecystitis)</span>", cat: 4,
+              imageUrl: "https://user.uploads.dev/file/9fc09dc15993a0685b1a14b9bbc4c598.png",
+              imageLabel: "إيكو بطن (US)",
+              imageCaption: "حجر مراري (Gallstone) مع ظل صوتي (Shadowing) وجدار مثانة سميك — التهاب المرارة الحاد.",
+              symptoms: "Right-upper-quadrant pain — continuous, >30 min, often after a fatty meal\nFever and chills; nausea and vomiting\nPain radiating to the right shoulder or interscapular area\nHistory of prior biliary colic; risk factors: female, fertile, fat, forty (and older)",
+              examination: "RUQ tenderness\nMurphy sign: arrest of inspiration on RUQ palpation\nFever, tachycardia; jaundice suggests common-duct stones\nPalpable gallbladder if empyema (rare)",
+              investigations: "Gold standard: ultrasound — gallstones, wall thickness >3 mm, pericholecystic fluid, sonographic Murphy sign\nCBC (leukocytosis), LFTs, lipase/amylase\nMRCP if common bile duct stones suspected (jaundice, dilated duct)\nHIDA scan if US equivocal; blood cultures if sepsis",
+              management: "NPO, IV fluids, analgesia, antibiotics (e.g. cefazolin + metronidazole)\nDefinitive: laparoscopic cholecystectomy — EARLY (within 24-72 h) preferred\nEmergency surgery for gangrene, perforation, empyema\nERCP ± sphincterotomy if CBD stone; manage abscess",
+              differentials: "Biliary colic: episodic pain, normal gallbladder wall on US\nAcute pancreatitis: lipase elevated\nPerforated peptic ulcer: free air\nHepatic abscess: fever, mass, US/CT\nLower-lobe pneumonia/RUQ referred pain: CXR" }
+,
+            { text: "التهاب الرتوج<br><span style='font-size:18px; color:#ccc;'>(Diverticulitis)</span>", cat: 4,
+              imageUrl: "https://user.uploads.dev/file/bb7ec9a1ab822766f437da0ff1e9a511.jpg",
+              imageLabel: "أشعة مقطعية CT",
+              imageCaption: "التهابات دهون (Fat stranding) حول القولون السيني مع رتج ملتهب (سهم) — التهاب الرتوج.",
+              symptoms: "Left-lower-quadrant pain — constant, worse with movement\nFever, nausea and vomiting\nChange in bowel habit\nOlder adults, low-fiber diet; complicated disease: abscess, perforation, fistula",
+              examination: "LLQ tenderness with localized guarding\nPalpable mass (phlegmon or abscess)\nFever, tachycardia; rectal examination may reveal tenderness/mass\nSigns of peritonitis if perforated",
+              investigations: "Gold standard: contrast CT abdomen/pelvis — inflamed diverticulum, colonic wall thickening, pericolonic fat stranding, ± abscess\nCBC and CRP\nUrinalysis to exclude stone/UTI\nUltrasound if CT unavailable",
+              management: "Uncomplicated: conservative — clear fluids/bowel rest, oral antibiotics (or selective therapy), hydration\nAbscess: CT-guided percutaneous drainage or surgery\nPerforation/sepsis: resection (Hartmann's procedure or primary anastomosis)\nPrevention: high-fiber diet; consider elective resection after recurrent attacks",
+              differentials: "Renal colic: flank pain, hematuria, no fever pattern\nAppendicitis: RLQ, migration of pain\nIschemic colitis: bloody diarrhea, CT shows segmental changes\nColon cancer: chronic obstruction, colonoscopy\nOvarian cyst/torsion: pelvic ultrasound" }
+,
+            { text: "متلازمة الشريان التاجي الحادة<br><span style='font-size:18px; color:#ccc;'>(Acute Coronary Syndrome)</span>", cat: 5,
+              imageUrl: "https://user.uploads.dev/file/37698416116e5cb20fb602163ba1c2d3.jpg",
+              imageLabel: "رسم قلب 12-مسرى (12-Lead ECG)",
+              imageCaption: "ارتفاع ST في المساري الأمامية (البرتقالي) مع انخفاض متبادل (الأزرق) — احتشاء أمامي جانبي حاد (STEMI).",
+              symptoms: "Chest pressure/tightness radiating to arm, jaw or back\nDyspnea, diaphoresis, nausea and anxiety\nAtypical in elderly/diabetics: epigastric discomfort, fatigue, syncope\nDuration >20 minutes, not relieved by rest or nitroglycerin",
+              examination: "Pale, diaphoretic, anxious patient\nTachycardia or bradycardia; hypertension or hypotension\nS3/S4 gallop; new mitral regurgitation murmur; signs of heart failure (crackles, raised JVP) — Killip class\nCompare BP both arms (aortic dissection)",
+              investigations: "Gold standard: 12-lead ECG within 10 min — ST elevation (STEMI) vs ST depression/T inversion (NSTEMI)\nSerial high-sensitivity troponin (0-1-3 h)\nEchocardiography for wall-motion abnormality\nCXR (exclude dissection/pneumonia); GRACE risk score",
+              management: "STEMI: aspirin + P2Y12 inhibitor + heparin + primary PCI within 90-120 min (or fibrinolysis if delay >120 min, within 12 h of onset)\nNSTEMI: antithrombotic therapy + early invasive strategy by risk\nAnalgesia: IV nitroglycerin, morphine if needed; oxygen only if hypoxic\nSecondary prevention: statin, β-blocker, ACE-I, cardiac rehabilitation",
+              differentials: "PE: sudden dyspnea, CTPA filling defect\nAortic dissection: tearing pain, pulse deficit, CTA\nPericarditis: positional pain, friction rub, diffuse ST elevation/PR depression\nEsophageal spasm/GERD: meal-related, responds to antacids\nMusculoskeletal: reproducible tenderness" }
+,
+            { text: "الرجفان الأذيني<br><span style='font-size:18px; color:#ccc;'>(Atrial Fibrillation)</span>", cat: 5,
+              imageUrl: "https://user.uploads.dev/file/e334640f327e7fe3a32039849589ad85.jpg",
+              imageLabel: "رسم قلب (ECG)",
+              imageCaption: "غياب موجات P مع فترات R-R غير منتظمة — الرجفان الأذيني (AF).",
+              symptoms: "Palpitations — irregular, 'skipping beats'\nFatigue, dyspnea, dizziness, exercise intolerance\nMay be asymptomatic (found on ECG or after a stroke)\nPrecipitants: hyperthyroidism, alcohol, sepsis, MI, pulmonary embolism, cardiac surgery",
+              examination: "Irregularly irregular pulse; pulse deficit (radial < apical)\nHeart rate 100-160 bpm uncontrolled\nSigns of heart failure if rate uncontrolled: crackles, edema, raised JVP\nCardiomegaly; murmur if valvular disease",
+              investigations: "Gold standard: ECG — absent P waves, irregular R-R intervals, fibrillatory (f) waves\nEchocardiography: LA size, valve disease, LV function, thrombus (TEE if cardioversion)\nTSH (hyperthyroidism), electrolytes, renal function\nHolter for paroxysmal AF; CHA2DS2-VASc for thromboembolic risk",
+              management: "Rate control (β-blocker, non-DHP CCB, or digoxin) OR rhythm control (cardioversion/antiarrhythmic)\nAnticoagulation per CHA2DS2-VASc (DOAC or warfarin) unless contraindicated\nTreat the precipitant (thyroid, alcohol, sepsis)\nCatheter ablation for selected symptomatic patients; assess bleeding risk (HAS-BLED)",
+              differentials: "Atrial premature beats: occasional, sinus P waves\nAtrial flutter: regular R-R (usually 2:1), sawtooth waves\nAVNRT/SVT: regular, narrow complex\nSinus arrhythmia: normal P waves, rate-related\nMultifocal atrial tachycardia: ≥3 P morphologies" }
+,
+            { text: "إحصار القلب الكامل<br><span style='font-size:18px; color:#ccc;'>(Complete Heart Block)</span>", cat: 5,
+              imageUrl: "https://user.uploads.dev/file/711f5874d6cef3c6b3178a9a2852e7f5.jpg",
+              imageLabel: "رسم قلب (ECG)",
+              imageCaption: "تفكك تام بين الأذينين والبطينين (AV dissociation) — إحصار القلب الكامل (CHB).",
+              symptoms: "Syncope or near-syncope — Adams-Stokes attacks\nFatigue, dyspnea, exercise intolerance\nPalpitations or the sensation of a slow heart\nPrecipitants: inferior MI, β-blockers/CCB/digoxin, Lyme disease, infiltrative disease, post-cardiac surgery",
+              examination: "Severe bradycardia (<40 bpm)\nCannon 'a' waves in the neck (AV dissociation)\nVarying intensity of S1\nHypotension and signs of heart failure with low output",
+              investigations: "Gold standard: ECG — complete AV dissociation (P waves and QRS fully independent) with bradycardia\nEchocardiography for structural disease\nHolter monitor for paroxysmal block\nElectrolytes (K, Ca, Mg), digoxin level; Lyme serology if endemic area",
+              management: "Definitive: permanent pacemaker (all symptomatic patients and most asymptomatic complete heart block)\nTemporary transcutaneous/transvenous pacing for the unstable patient\nAtropine is usually INEFFECTIVE in complete heart block (site of block is below the AV node)\nStop offending drugs; treat the precipitant (revascularize if MI, antibiotics for Lyme)",
+              differentials: "Second-degree AV block (Wenckebach/Mobitz II): some P waves conduct\nSick sinus syndrome: sinus bradycardia/pauses, P waves drive the rhythm\nDrug-induced bradyarrhythmia: drug history\nHyperkalemia: peaked T waves, wide QRS\nVasovagal syncope: precipitating event, no AV dissociation" }
+,
+            { text: "متلازمة وولف-باركنسون-وايت<br><span style='font-size:18px; color:#ccc;'>(WPW Syndrome)</span>", cat: 5,
+              imageUrl: "https://user.uploads.dev/file/93d58a51e296da99d0a1f0e636dca3e1.png",
+              imageLabel: "رسم قلب (ECG)",
+              imageCaption: "«موجة دلتا» (Delta wave) — الشكل المميز لمتلازمة WPW.",
+              symptoms: "Paroxysmal palpitations with a rapid regular tachycardia (AVRT)\nLightheadedness, chest discomfort, syncope\nOnset in youth — otherwise healthy patients\nRare: sudden cardiac death — pre-excited AF with rapid conduction via the accessory pathway",
+              examination: "Rapid regular narrow-complex tachycardia (orthodromic AVRT)\nIn pre-excited AF: irregular, WIDE-complex tachycardia\nOtherwise normal examination\nLook for Ebstein anomaly (tricuspid displacement)",
+              investigations: "Gold standard: ECG — short PR, delta wave, widened QRS (ventricular pre-excitation)\nElectrophysiology study (EPS) for risk stratification in symptomatic patients\nHolter monitor to capture episodes\nEchocardiography to exclude Ebstein anomaly",
+              management: "Acute AVRT: vagal maneuvers, then adenosine (or verapamil) — avoid AV-node blockers if pre-excited AF\nPre-excited AF: DO NOT give AV-node blockers (risk of VF) — procainamide/ibutilide or synchronized DC cardioversion if unstable\nDefinitive: catheter ablation of the accessory pathway\nLifelong follow-up; evaluate exercise tolerance",
+              differentials: "AVNRT: no delta wave, normal PR interval\nAtrial flutter: regular, no pre-excitation\nAtrial tachycardia: identifiable P waves\nJunctional tachycardia: relatively slow\nBundle branch block: no short PR/delta wave" }
+,
+            { text: "فرط بوتاسيوم الدم<br><span style='font-size:18px; color:#ccc;'>(Hyperkalemia)</span>", cat: 5,
+              imageUrl: "https://user.uploads.dev/file/51608f7335637db5f83e61dbe11c85e5.jpg",
+              imageLabel: "رسم قلب (ECG)",
+              imageCaption: "موجات T طويلة مدببة (Tall peaked T waves) — فرط بوتاسيوم الدم.",
+              symptoms: "Muscle weakness and fatigue\nParesthesias ('pins and needles') and muscle cramps\nPalpitations, bradycardia\nOften asymptomatic until arrhythmia or cardiac arrest; causes: renal failure, ACE-I/ARB, K-sparing diuretics, acidosis, rhabdomyolysis",
+              examination: "Bradycardia; hypotension if severe\nFlaccid muscle weakness, hyporeflexia\nSigns of renal failure: edema, uremic flap, oliguria\nAltered mentation",
+              investigations: "Exclude pseudohyperkalemia FIRST: repeat with a fresh (non-hemolyzed) sample\nGold standard for risk: ECG — tall peaked T waves → prolonged PR → wide QRS → sine wave → VF/asystole\nBMP: K+, renal function, glucose; ABG for acidosis\nUrine K+ (renal vs extrarenal); review medications",
+              management: "Mild (K+ 5.5-6, normal ECG): reduce intake, stop offending drugs, loop diuretic, kayexalate\nSevere (K+ >6.5 or ECG changes): IV calcium gluconate FIRST (cardiac stabilization — no K+ lowering)\nThen shift K+ into cells: insulin + glucose, nebulized salbutamol (± sodium bicarbonate if acidotic)\nRemove K+: loop diuretics, sodium polystyrene, and HEMODIALYSIS for renal failure or refractory cases",
+              differentials: "Pseudohyperkalemia: hemolyzed sample or tight tourniquet — repeat test\nHemolysis (true): elevated LDH, low haptoglobin\nRhabdomyolysis: elevated CK, dark urine\nAdrenal insufficiency: hyponatremia + hyperkalemia + hyperpigmentation\nHypoaldosteronism/type 4 RTA: diabetes, low renin/aldosterone" }
+        ];
+
+        let spinning = false;
+        let isCounting = false; 
+        let dialInterval;
+        let countdownTimer; // استخدام setTimeout للتحكم المطلق
+        let currentDisease = null;
+        const catNames = ['الباطنة', 'أشعة وتداخلية', 'عظام', 'أطفال', 'جراحة', 'قلب'];
+        
+        function renderLines(ctn, text) {
+            ctn.innerHTML = '';
+            for (const line of String(text || '').split('\n')) {
+                if (!line.trim()) continue;
+                const div = document.createElement('div');
+                div.className = 'study-line';
+                div.textContent = line;
+                ctn.appendChild(div);
+            }
+        }
+
+        function openStudyModal() {
+            const d = currentDisease;
+            if (!d) return;
+            playTick(500, 'sine', 0.12);
+            document.getElementById('study-modal-title').innerHTML = d.text;
+            document.getElementById('study-modal-cat').textContent = 'Specialty: ' + (catNames[d.cat] || '');
+            renderLines(document.getElementById('study-symptoms'), d.symptoms);
+            renderLines(document.getElementById('study-examination'), d.examination);
+            renderLines(document.getElementById('study-investigations'), d.investigations);
+            renderLines(document.getElementById('study-management'), d.management);
+            renderLines(document.getElementById('study-differentials'), d.differentials);
+            const img = document.getElementById('study-modal-img');
+            if (d.imageUrl) { img.src = d.imageUrl; img.style.display = 'block'; } else img.style.display = 'none';
+            document.getElementById('study-modal-img-label').textContent = d.imageLabel || '';
+            document.getElementById('study-modal-img-cap').textContent = d.imageCaption || '';
+            const overlay = document.getElementById('study-overlay');
+            overlay.hidden = false;
+            requestAnimationFrame(() => overlay.classList.add('visible'));
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStudyModal() {
+            const overlay = document.getElementById('study-overlay');
+            overlay.classList.remove('visible');
+            setTimeout(() => { overlay.hidden = true; }, 300);
+            document.body.style.overflow = '';
+        }
+
+        function startChallenge() {
+            closeStudyModal();
+            setTimeout(() => {
+                const ts = document.getElementById('timer-section');
+                ts.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                setTimeout(() => startCountdown(), 400);
+            }, 330);
+        }
+
+        document.getElementById('study-overlay').addEventListener('click', (e) => {
+            if (e.target.id === 'study-overlay') closeStudyModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeStudyModal();
+        });
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playTick(freq = 180, type = 'square', duration = 0.05) {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain); gain.connect(audioCtx.destination);
+            osc.frequency.value = freq; osc.type = type;
+            
+            const now = audioCtx.currentTime;
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.05, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+            
+            osc.start(now);
+            osc.stop(now + duration + 0.01);
+        }
+
+        function spinSlot() {
+            if (spinning) return; 
+            
+            spinning = true;
+            isCounting = false; // إيقاف صارم للمؤقت
+            clearTimeout(countdownTimer); // تصفير العداد برمجياً
+            currentDisease = null;
+            const studyBtn = document.getElementById('study-btn');
+            studyBtn.disabled = true;
+            
+            const display = document.getElementById('disease-display');
+            const button = document.getElementById('spin-button');
+            const timerSection = document.getElementById('timer-section');
+            const timerBtn = document.getElementById('start-timer-btn');
+            
+            timerSection.classList.remove('ready');
+            
+            document.getElementById('timer-display').innerText = "00:30";
+            document.getElementById('timer-display').classList.remove('timer-alert');
+            timerBtn.disabled = false;
+            timerBtn.style.opacity = '1';
+
+            display.classList.remove('winner-effect');
+            document.getElementById('imaging-panel').classList.remove('visible');
+            document.getElementById('imaging-img').removeAttribute('src');
+            document.getElementById('bg-pulser').classList.add('active');
+            document.getElementById('main-machine').classList.add('spinning');
+            document.getElementById('glass-screen').classList.add('spinning-dome');
+            
+            dialInterval = setInterval(() => {
+                for(let i=0; i<6; i++) {
+                    document.getElementById('dial-' + i).classList.remove('active');
+                    document.getElementById('dial-' + i).classList.remove('winner-dial');
+                }
+                document.getElementById('dial-' + Math.floor(Math.random() * 6)).classList.add('active');
+            }, 100);
+            
+            button.disabled = true;
+            button.style.transform = 'translateY(8px)';
+            button.style.boxShadow = '0 0 0 #3a0000, 0 4px 8px rgba(0,0,0,0.7), inset 0 4px 8px rgba(0,0,0,0.5)';
+
+            let time = 0;
+            const spinDuration = 3000; 
+            let intervalTime = 30; 
+
+            function doSpin() {
+                if (!spinning) return;
+                const randomObj = diseases[Math.floor(Math.random() * diseases.length)];
+                display.innerHTML = randomObj.text;
+                playTick(150 + Math.random() * 50, 'square', 0.05); 
+                time += intervalTime;
+                
+                if (time > spinDuration * 0.7) intervalTime += 15; 
+
+                if (time < spinDuration) {
+                    setTimeout(doSpin, intervalTime);
+                } else {
+                    const finalObj = diseases[Math.floor(Math.random() * diseases.length)];
+                    display.innerHTML = '🎯 ' + finalObj.text + ' 🎯';
+                    display.classList.add('winner-effect');
+                    
+                    playTick(400, 'sine', 0.1);
+                    setTimeout(() => playTick(600, 'sine', 0.2), 150);
+                    
+                    document.getElementById('bg-pulser').classList.remove('active');
+                    document.getElementById('main-machine').classList.remove('spinning');
+                    document.getElementById('glass-screen').classList.remove('spinning-dome');
+                    
+                    clearInterval(dialInterval);
+                    for(let i=0; i<6; i++) {
+                        document.getElementById('dial-' + i).classList.remove('active');
+                        document.getElementById('dial-' + i).classList.remove('winner-dial');
+                    }
+                    document.getElementById('dial-' + finalObj.cat).classList.add('winner-dial');
+                    
+                    spinning = false;
+                    button.disabled = false;
+                    button.style.transform = 'translateY(0)';
+                    button.style.boxShadow = '0 8px 0 #3a0000, 0 12px 15px rgba(0,0,0,0.7), inset 0 2px 5px rgba(255,255,255,0.2)';
+                    
+                    const imagingPanel = document.getElementById('imaging-panel');
+                    const imagingImg = document.getElementById('imaging-img');
+                    const imagingHint = document.getElementById('imaging-hint');
+                    const imagingLabel = document.getElementById('imaging-label');
+
+                    timerSection.classList.add('ready');
+
+                    currentDisease = finalObj;
+                    studyBtn.disabled = false;
+
+                    if (finalObj.imageUrl) {
+                        imagingImg.onload = () => {
+                            imagingPanel.classList.add('visible');
+                            setTimeout(() => imagingPanel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+                        };
+                        imagingImg.src = finalObj.imageUrl;
+                        imagingHint.textContent = finalObj.imageCaption || '';
+                        imagingLabel.textContent = finalObj.imageLabel || '';
+                    } else {
+                        imagingPanel.classList.remove('visible');
+                        timerSection.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    }
+                }
+            }
+            doSpin();
+        }
+
+        function startCountdown() {
+            if (isCounting) return; 
+            isCounting = true;
+
+            const timerBtn = document.getElementById('start-timer-btn');
+            timerBtn.disabled = true;
+            timerBtn.style.opacity = '0.5';
+            
+            let timeLeft = 30;
+            const timerDisplay = document.getElementById('timer-display');
+            
+            timerDisplay.classList.remove('timer-alert');
+            timerDisplay.innerText = "00:30";
+
+            playTick(600, 'sine', 0.1); // جرس البداية
+
+            clearTimeout(countdownTimer);
+
+            // استخدام دالة تعيد استدعاء نفسها لضمان عدم وجود أخطاء في التوقيت
+            function countdownStep() {
+                if (!isCounting) return; 
+
+                timeLeft--;
+
+                if (timeLeft > 0) {
+                    playTick(300, 'square', 0.05); // صوت التكة
+                    timerDisplay.innerText = "00:" + (timeLeft < 10 ? "0" + timeLeft : timeLeft);
+                    if (timeLeft <= 7) timerDisplay.classList.add('timer-alert');
+                    
+                    countdownTimer = setTimeout(countdownStep, 1000);
+                } else {
+                    isCounting = false; // إنهاء الحالة تماماً
+                    timerDisplay.innerText = "انتهى الوقت!";
+                    
+                    // جرس النهاية
+                    playTick(300, 'sawtooth', 0.15);
+                    setTimeout(() => playTick(300, 'sawtooth', 0.15), 200);
+                    setTimeout(() => playTick(300, 'sawtooth', 0.3), 400);
+                }
+            }
+
+            countdownTimer = setTimeout(countdownStep, 1000);
+        }
+
+        window.spinSlot = spinSlot;
+        window.startCountdown = startCountdown;
+        window.openStudyModal = openStudyModal;
+        window.closeStudyModal = closeStudyModal;
+        window.startChallenge = startChallenge;
+    })();
+    </script>
+</body>
+</html>
