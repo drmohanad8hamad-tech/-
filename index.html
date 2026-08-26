@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6WTXMVWXWD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6WTXMVWXWD');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الزَّتُونَة - الأداة الطبية الفاخرة</title>
@@ -36,8 +27,10 @@
             color: var(--gold-light);
             font-family: 'Cairo', sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 18px;
             min-height: 100vh;
             margin: 0;
             padding: 20px 0;
@@ -423,6 +416,49 @@
 
         .study-foot-btn.go { background: linear-gradient(to bottom, #104020, #05200f); border: 2px solid #2ecc71; color: #2ecc71; }
         .study-foot-btn.go:hover { background: #155724; color: #fff; box-shadow: 0 4px 20px rgba(46,204,113,0.4); }
+
+        .site-footer {
+            margin-top: 26px;
+            z-index: 1;
+        }
+
+        .site-footer a {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            text-decoration: none;
+            color: rgba(243, 229, 171, 0.65);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 9px 16px;
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            border-radius: 999px;
+            background: rgba(20, 10, 5, 0.5);
+            transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .site-footer a svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+
+        .site-footer a:hover {
+            color: #E4405F;
+            border-color: rgba(228, 64, 95, 0.6);
+            box-shadow: 0 0 18px rgba(228, 64, 95, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .site-footer a:hover svg {
+            transform: scale(1.15) rotate(-8deg);
+        }
     </style>
 </head>
 <body>
@@ -524,6 +560,17 @@
             </div>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <a href="https://www.instagram.com/dr.mhn.d?igsh=bnh6bGIwOGNxbTl0" target="_blank" rel="noopener noreferrer" aria-label="Instagram Dr.Mhn.D">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            Dr.Mhn.D
+        </a>
+    </footer>
 
     <script>
     (() => {
@@ -1244,11 +1291,5 @@
         window.startChallenge = startChallenge;
     })();
     </script>
-</div> <!-- هذا السطر يغلق التصميم الأساسي للتطبيق -->
-    
-<div style="position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; text-align: center; padding: 8px 0; font-size: 12px; color: rgba(255, 255, 255, 0.6); background-color: rgba(0, 0, 0, 0.8); z-index: 999999 !important; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 0; box-sizing: border-box;">
-    جميع حقوق المحتوى الطبي والتصميم محفوظة للدكتور مهند محمود حمد &copy; 2026
-</div>
-
 </body>
 </html>
